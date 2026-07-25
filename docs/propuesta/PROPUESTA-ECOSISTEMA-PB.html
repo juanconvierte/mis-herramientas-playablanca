@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Propuesta · Ecosistema de Crecimiento — Playa Blanca Residences</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_logos.css">
+<style>
+:root{
+  --navy:#17293F; --navy2:#0E1D2E; --gold:#B8933F; --goldl:#C6A052; --gold-soft:#EAD9AE;
+  --cream:#FBF3E2; --bg:#E9EDF2; --ink:#1B2F4B; --mut:#6673833; --mut:#667383; --mut2:#8A99AA;
+  --line:#E3E9EF; --alt:#F4F7FA; --up:#217A54; --up-bg:#E8F4EE; --red:#B23A32; --red-bg:#FBEDEB;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:var(--bg);font-family:'Inter',system-ui,sans-serif;color:var(--ink);font-size:10.5pt;line-height:1.5}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+
+.page{width:216mm;min-height:279mm;background:#fff;margin:10mm auto;padding:16mm 17mm 14mm;position:relative;
+  box-shadow:0 10px 40px rgba(14,29,46,.15);display:flex;flex-direction:column}
+.page.cover{padding:0;background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;overflow:hidden}
+
+@media print{
+  body{background:#fff}
+  .page{width:auto;min-height:0;height:257mm;margin:0;box-shadow:none;page-break-after:always;padding:10mm 12mm 8mm}
+  .page.cover{height:257mm;padding:0}
+  .page:last-child{page-break-after:auto}
+}
+@page{size:Letter;margin:10mm}
+
+/* ---------- tipografía ---------- */
+h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26pt;line-height:1.15;letter-spacing:-.01em}
+h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19pt;color:var(--navy);margin-bottom:4mm}
+h3{font-size:11pt;font-weight:700;color:var(--navy)}
+p{color:#3c4a5c}
+.kicker{font-size:8pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5mm}
+.lead{font-size:11.5pt;line-height:1.65;color:#33415595;color:#334155}
+
+/* ---------- footer ---------- */
+.pfoot{margin-top:auto;padding-top:5mm;display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid var(--line);font-size:7.5pt;color:var(--mut2);letter-spacing:.04em}
+.pfoot b{color:var(--mut)}
+
+/* ---------- portada ---------- */
+.cov-in{height:100%;min-height:279mm;display:flex;flex-direction:column;padding:20mm 20mm 16mm;position:relative}
+@media print{.cov-in{min-height:0;height:257mm}}
+.cov-in:before{content:"";position:absolute;right:-70mm;top:-70mm;width:180mm;height:180mm;border-radius:50%;
+  background:radial-gradient(circle,rgba(198,160,82,.16),transparent 65%)}
+.cov-logo{width:64mm;height:22mm;margin-bottom:auto}
+.cov-k{font-size:9pt;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:6mm}
+.cov-t{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:37pt;line-height:1.08;color:#fff;max-width:150mm}
+.cov-t em{font-style:italic;color:var(--gold-soft)}
+.cov-sub{margin-top:7mm;font-size:11.5pt;color:#B9C6D6;max-width:135mm;line-height:1.7}
+.cov-line{width:26mm;height:2px;background:var(--goldl);margin:9mm 0 0}
+.cov-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(255,255,255,.14);padding-top:6mm}
+.cov-meta .l{font-size:9pt;color:#8FA1B5;line-height:1.8}
+.cov-meta .l b{color:#fff;font-size:10.5pt;display:block}
+.cov-meta .r{font-size:8pt;color:#8FA1B5;text-align:right;letter-spacing:.08em}
+
+/* ---------- componentes ---------- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5mm}
+.card{border:1px solid var(--line);border-radius:3.5mm;padding:5mm;background:#fff}
+.card h3{margin-bottom:1.5mm}
+.card p{font-size:9pt;line-height:1.55;color:#4a586a}
+
+.pain{border-left:3px solid var(--red);background:var(--red-bg);border-radius:0 3mm 3mm 0;padding:4mm 5mm}
+.pain h3{color:var(--red);font-size:10pt;display:flex;gap:2mm;align-items:baseline}
+.pain .num{font-weight:800}
+.pain p{font-size:9pt;color:#5a4744;margin-top:1mm}
+
+.quote{background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;border-radius:4mm;padding:7mm 8mm;margin:6mm 0}
+.quote .q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14.5pt;line-height:1.5;color:var(--gold-soft)}
+.quote .who{margin-top:3mm;font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:#9DB2C6}
+
+.check{display:flex;gap:3mm;padding:2.6mm 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.check:last-child{border-bottom:0}
+.check .ic{width:5mm;height:5mm;border-radius:50%;background:var(--up-bg);color:var(--up);display:grid;place-items:center;
+  font-size:8pt;font-weight:800;flex:none;margin-top:.6mm}
+.check b{font-size:9.5pt;color:var(--navy)}
+.check span{display:block;font-size:8.5pt;color:#5a6a7d;margin-top:.4mm;line-height:1.5}
+.tagLive{display:inline-block;font-size:6.5pt;font-weight:800;letter-spacing:.1em;color:var(--up);background:var(--up-bg);
+  border-radius:2mm;padding:.6mm 2mm;vertical-align:1px;margin-left:1.5mm}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin:5mm 0}
+.stat{background:var(--cream);border:1px solid #eadfc4;border-radius:3mm;padding:4mm;text-align:center}
+.stat b{display:block;font-size:16pt;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+.stat span{font-size:7.5pt;color:#7a6b4a;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+
+table{width:100%;border-collapse:collapse}
+th{background:var(--navy);color:#fff;font-size:8.5pt;font-weight:700;text-align:left;padding:2.8mm 3.5mm;letter-spacing:.03em}
+th.c,td.c{text-align:center}
+th.r,td.r{text-align:right}
+td{padding:2.6mm 3.5mm;border-bottom:1px solid var(--line);font-size:9pt;color:#3c4a5c;vertical-align:top}
+tr:nth-child(even) td{background:var(--alt)}
+td b{color:var(--navy)}
+.tval{color:var(--mut);white-space:nowrap}
+.trow-total td{background:var(--navy)!important;color:#fff;font-weight:700;font-size:10pt}
+.trow-total td .gold{color:var(--gold-soft)}
+.strike{text-decoration:line-through;color:var(--mut2);font-weight:600}
+
+.flow{display:flex;align-items:stretch;gap:0;margin:5mm 0}
+.fbox{flex:1;background:var(--alt);border:1px solid var(--line);border-radius:3mm;padding:3.5mm 2.5mm;text-align:center;position:relative}
+.fbox b{display:block;font-size:8.5pt;color:var(--navy)}
+.fbox span{font-size:7pt;color:var(--mut);display:block;margin-top:.8mm;line-height:1.4}
+.farr{display:flex;align-items:center;padding:0 1.2mm;color:var(--goldl);font-weight:800;font-size:10pt}
+
+.colcad{border:1px solid var(--line);border-radius:3.5mm;overflow:hidden}
+.colcad .h{background:var(--navy);color:#fff;font-weight:700;font-size:9.5pt;padding:3mm 4mm;display:flex;justify-content:space-between;align-items:center}
+.colcad .h em{font-style:normal;color:var(--gold-soft);font-size:7.5pt;letter-spacing:.08em}
+.colcad ul{list-style:none;padding:2mm 4mm 3mm}
+.colcad li{font-size:8.6pt;color:#43536690;color:#435366;padding:1.6mm 0;border-bottom:1px dashed var(--line);line-height:1.45}
+.colcad li:last-child{border-bottom:0}
+.colcad li b{color:var(--navy)}
+
+.optbox{border:2px solid var(--line);border-radius:4mm;padding:6mm;position:relative;background:#fff}
+.optbox.rec{border-color:var(--goldl);background:linear-gradient(180deg,#FFFDF7,#fff)}
+.optbox .badge{position:absolute;top:-3.4mm;left:6mm;background:var(--goldl);color:#fff;font-size:7pt;font-weight:800;
+  letter-spacing:.12em;padding:1.2mm 3mm;border-radius:2mm;text-transform:uppercase}
+.optbox h3{font-size:12pt}
+.optbox .price{font-size:24pt;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin:2mm 0 1mm}
+.optbox .price small{font-size:9pt;font-weight:600;color:var(--mut)}
+.optbox ul{list-style:none;margin-top:3mm}
+.optbox li{font-size:8.8pt;color:#435366;padding:1.4mm 0;display:flex;gap:2mm}
+.optbox li:before{content:"✓";color:var(--up);font-weight:800}
+.optbox li.no:before{content:"—";color:var(--mut2)}
+.optbox li.no{color:var(--mut2)}
+
+.note{background:var(--alt);border:1px solid var(--line);border-radius:3mm;padding:3.5mm 4.5mm;font-size:8.5pt;color:#54657a;line-height:1.55}
+.note b{color:var(--navy)}
+.gold-note{background:var(--cream);border-color:#eadfc4;color:#6a5a34}
+.gold-note b{color:#8a6d2f}
+.secline{width:14mm;height:1.2mm;background:var(--goldl);border-radius:1mm;margin:2mm 0 5mm}
+</style>
+</head>
+<body>
+
+<!-- ============ PÁGINA 1 · PORTADA ============ -->
+<div class="page cover">
+  <div class="cov-in">
+    <div class="logo logo-white cov-logo"></div>
+    <div class="cov-k">Propuesta confidencial · Julio 2026</div>
+    <div class="cov-t">El Ecosistema de Crecimiento de <em>Playa Blanca</em></div>
+    <div class="cov-sub">Un sistema completo — anuncios, seguimiento, reportes y control en tiempo real — que ya está construido, ya está funcionando, y está diseñado para una sola cosa: <b style="color:#fff">convertir su inversión publicitaria en compradores de propiedades.</b></div>
+    <div class="cov-line"></div>
+    <div class="cov-meta">
+      <div class="l">Preparada para<b>Ralph · Playa Blanca Residences</b></div>
+      <div class="l">Preparada por<b>Juan Escorcha · JuanConvierte</b></div>
+      <div class="r">panama.playablancaresidences.com<br>Vigencia: 15 días</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PÁGINA 2 · RESUMEN EJECUTIVO ============ -->
+<div class="page">
+  <div class="kicker">Resumen ejecutivo</div>
+  <h2>Ralph: usted no necesita más leads.<br>Necesita compradores — y control total.</h2>
+  <div class="secline"></div>
+  <p class="lead">Durante los últimos meses construimos juntos algo que la mayoría de las inmobiliarias no tiene: una <b>máquina de captar y gestionar compradores</b> que trabaja sola, 24/7, y le reporta a usted en tiempo real. Esta propuesta formaliza ese sistema, tapa las fugas de dinero que hoy existen, y lo lleva al siguiente nivel.</p>
+
+  <div class="stats">
+    <div class="stat"><b>239</b><span>leads · últimos 30 días</span></div>
+    <div class="stat"><b>$38M</b><span>presupuesto declarado*</span></div>
+    <div class="stat"><b>$213</b><span>costo por comprador potencial</span></div>
+    <div class="stat"><b>$10,800</b><span>costo anual de HubSpot hoy</span></div>
+  </div>
+
+  <p class="lead" style="margin-top:2mm">Hoy usted paga <b>~$900/mes por HubSpot</b> — una herramienta alquilada que su equipo apenas usa — y el seguimiento de cada lead depende de que un asesor se acuerde de llamar. Mientras tanto, ya existe un ecosistema propio, hecho a la medida de Playa Blanca, que hace ese trabajo solo: <b>captura, califica, alerta, persigue, reporta y aprende.</b></p>
+
+  <div class="quote">
+    <div class="q">“No me importa si un lead sale caro, con tal de que se pague solo cuando vendo una propiedad. Me da igual si me llegan baratos pero no son compradores.”</div>
+    <div class="who">— Ralph, sobre lo que de verdad importa</div>
+  </div>
+
+  <p class="lead">Esta propuesta está diseñada alrededor de esa frase. No optimizamos por leads baratos: optimizamos por <b>compradores con presupuesto real</b> — y por que ninguno se enfríe en el camino.</p>
+
+  <div class="note gold-note" style="margin-top:5mm"><b>Lo que encontrará en las próximas páginas:</b> los 6 puntos donde hoy se pierde dinero · el inventario de lo que ya está construido y funcionando · el paquete completo de servicio · el plan para eliminar la fuga de HubSpot · los números lado a lado · y el plan de los primeros 90 días.</div>
+
+  <div class="pfoot"><span><b>Playa Blanca Residences</b> · Propuesta de Ecosistema de Crecimiento</span><span>*Suma de rangos de inversión declarados por los leads (punto medio). Potencial, no ventas. · pág. 2</span></div>
+</div>
+
+<!-- ============ PÁGINA 3 · LOS DOLORES ============ -->
+<div class="page">
+  <div class="kicker">La foto de hoy</div>
+  <h2>Seis lugares donde el negocio pierde dinero cada mes</h2>
+  <div class="secline"></div>
+  <p class="lead" style="margin-bottom:5mm">Nada de esto es teoría. Cada punto viene de la data real de su operación — detectado y documentado por el propio sistema.</p>
+
+  <div class="grid2">
+    <div class="pain"><h3><span class="num">1.</span> Se paga el 100% de HubSpot… y se usa el 5%</h3>
+      <p>HubSpot cuesta ~<b>$900/mes ($10,800/año)</b>. El equipo usa <b>8 de sus ~70 funciones — se paga por las otras 62</b> como una libreta de contactos cara. Y cuando falló el cobro, <b>los flujos se rompieron y los leads entraron sin dueño</b>. Es la fuga más grande — y la más fácil de tapar.</p></div>
+    <div class="pain"><h3><span class="num">2.</span> Leads calientes que se enfrían sin una llamada</h3>
+      <p>El sistema detectó leads con presupuesto declarado esperando <b>45, 49 y hasta 51 horas</b> sin contacto. Una venta inmobiliaria muere más por falta de respuesta rápida que por falta de leads.</p></div>
+    <div class="pain"><h3><span class="num">3.</span> 4 de cada 10 leads no se logran localizar</h3>
+      <p>En un corte de 30 días, <b>79 de ~200 leads (40%) resultaron no localizables</b>. Causa raíz identificada: el formulario instantáneo optimizaba CANTIDAD. Los asesores lo vivieron: “la mayoría dice que nunca se registró”. <b>La corrección ya está en marcha</b> — la nueva campaña optimiza por conversión en la página web con formulario calificador. Falta blindar el resto del embudo.</p></div>
+    <div class="pain"><h3><span class="num">4.</span> Data frágil, atada a cuentas personales</h3>
+      <p>Cuando una empleada se fue, su cuenta se llevó consigo la integración: <b>147 formularios, píxel y cuentas publicitarias caídos</b>. Luego el sync Meta→CRM dejó leads varados (32 se recuperaron a mano). Sin vigilancia automática, esto se repite y nadie se entera.</p></div>
+    <div class="pain"><h3><span class="num">5.</span> Cero seguimiento automático</h3>
+      <p>Un lead que no contesta la primera llamada hoy <b>no recibe nada más</b>: ni un correo, ni un anuncio de recordatorio, ni un segundo intento programado. Cada uno de esos leads ya está pagado.</p></div>
+    <div class="pain"><h3><span class="num">6.</span> Decisiones a ciegas</h3>
+      <p>Hasta hace poco, saber “¿cómo vamos?” dependía de pedirle un reporte a alguien. Sin ROAS, sin pipeline visible, sin saber qué asesor responde y cuál no. <b>Lo que no se ve, no se puede dirigir.</b></p></div>
+  </div>
+
+  <div class="note" style="margin-top:6mm"><b>El costo real no es el desperdicio — es la venta que no ocurrió.</b> Con propiedades desde $193,912 hasta $569,601, un solo comprador que se enfría por falta de seguimiento vale más que un año entero de todo este sistema.</div>
+
+  <div class="pfoot"><span><b>Playa Blanca Residences</b> · Propuesta de Ecosistema de Crecimiento</span><span>pág. 3</span></div>
+</div>
+
+<!-- ============ PÁGINA 4 · LO QUE YA ESTÁ CONSTRUIDO ============ -->
+<div class="page">
+  <div class="kicker">Prueba, no promesa</div>
+  <h2>Esto no es un plan. Ya está construido y funcionando.</h2>
+  <div class="secline"></div>
+  <p class="lead" style="margin-bottom:4mm">Todo lo siguiente está <b>vivo hoy</b>, operando sobre la data real de Playa Blanca. Usted ya lo ha visto trabajar.</p>
+
+  <div class="check"><div class="ic">✓</div><div><b>Dos landing pages de alta conversión <span class="tagLive">VIVO</span></b><span>Panamá y Colombia, con formulario calificador (presupuesto + plazo + intención). Filtran curiosos ANTES de que lleguen a sus asesores.</span></div></div>
+  <div class="check"><div class="ic">✓</div><div><b>Medición de nivel corporativo <span class="tagLive">VIVO</span></b><span>Pixel + API de Conversiones (server-side) + 15 eventos de comportamiento + grabaciones de sesión (Microsoft Clarity). Cada clic alimenta la optimización.</span></div></div>
+  <div class="check"><div class="ic">✓</div><div><b>Panel del CEO en tiempo real <span class="tagLive">VIVO</span></b><span>Su centro de control privado con clave: leads, pipeline potencial, embudo, actividad de los 4 asesores, campañas y calidad por presupuesto. Se actualiza solo, filtra por país y periodo, exporta PDF.</span></div></div>
+  <div class="check"><div class="ic">✓</div><div><b>Reportes automáticos por WhatsApp <span class="tagLive">VIVO</span></b><span>Alerta inmediata por CADA lead (nombre, presupuesto, campaña, asesor asignado, links de acción) + cierre diario 11:59 p.m., semanal (domingos) y mensual — cada uno con Excel adjunto, lead por lead, con enlaces directos para escribirle al cliente y abrir su ficha. Respaldado por un equipo de monitoreo con IA que vigila la operación varias veces al día.</span></div></div>
+  <div class="check"><div class="ic">✓</div><div><b>Campañas optimizadas por CALIDAD <span class="tagLive">VIVO</span></b><span>Estructura de campañas en Panamá y Colombia orientada a compradores con presupuesto — no a volumen barato. Con desglose formulario vs. página web por país.</span></div></div>
+  <div class="check"><div class="ic">✓</div><div><b>Suite de correos de marca (5 etapas)</b><span>Bienvenida → Seguimiento → Proyecto → Invitación a visita → Reactivación. Diseño premium navy/dorado, listos para activarse con la infraestructura de envío ya configurada.</span></div></div>
+  <div class="check"><div class="ic">✓</div><div><b>Motor de creativos propio</b><span>Generación de piezas publicitarias (1080×1920) con IA sobre la biblioteca real de fotos del proyecto — creativos nuevos cada semana sin costo de diseñador externo.</span></div></div>
+
+  <div class="stats" style="margin-top:5mm">
+    <div class="stat"><b>239</b><span>leads / 30 días</span></div>
+    <div class="stat"><b>103</b><span>leads en julio (al 12)</span></div>
+    <div class="stat"><b>110</b><span>con presupuesto declarado</span></div>
+    <div class="stat"><b>4</b><span>asesores monitoreados</span></div>
+  </div>
+
+  <div class="note gold-note"><b>¿Por qué importa?</b> Usted no está comprando una promesa de agencia. Está formalizando un sistema que ya vio funcionar — con sus leads, sus asesores y sus campañas.</div>
+
+  <div class="pfoot"><span><b>Playa Blanca Residences</b> · Propuesta de Ecosistema de Crecimiento</span><span>pág. 4</span></div>
+</div>
+
+<!-- ============ PÁGINA 5 · EL ECOSISTEMA ============ -->
+<div class="page">
+  <div class="kicker">Cómo funciona · Playa Blanca Growth OS</div>
+  <h2>Un solo sistema operativo. Cada pieza empuja a la venta.</h2>
+  <div class="secline"></div>
+
+  <div class="flow">
+    <div class="fbox"><b>Anuncio</b><span>Meta Ads<br>creativos semanales</span></div><div class="farr">→</div>
+    <div class="fbox"><b>Landing</b><span>formulario<br>calificador</span></div><div class="farr">→</div>
+    <div class="fbox"><b>CRM</b><span>lead registrado<br>y asignado</span></div><div class="farr">→</div>
+    <div class="fbox"><b>Asesor</b><span>alerta WhatsApp<br>al instante</span></div><div class="farr">→</div>
+    <div class="fbox"><b>Visita</b><span>invitación<br>y agenda</span></div><div class="farr">→</div>
+    <div class="fbox" style="background:var(--cream);border-color:#eadfc4"><b style="color:#8a6d2f">Venta</b><span>comprador<br>real</span></div>
+  </div>
+
+  <div class="grid3" style="margin-top:2mm">
+    <div class="card"><h3>📧 Si no contesta…</h3><p>…no se pierde: entra a la <b>secuencia de correos</b> automática (seguimiento, proyecto, invitación, reactivación) hasta volver a la conversación.</p></div>
+    <div class="card"><h3>🎯 Si no compra aún…</h3><p>…lo persigue el <b>retargeting por fases</b>: anuncios distintos según en qué punto del camino se quedó. Nada de volver a pagar por el mismo lead.</p></div>
+    <div class="card"><h3>📊 Y usted lo ve TODO…</h3><p>…en su <b>panel en tiempo real</b> y en los reportes automáticos de WhatsApp con Excel. Sin pedirle nada a nadie.</p></div>
+  </div>
+
+  <h3 style="margin-top:7mm;font-size:12pt" class="serif">La diferencia con una agencia tradicional</h3>
+  <table style="margin-top:3mm">
+    <tr><th style="width:38%">&nbsp;</th><th class="c">Agencia típica</th><th class="c">Ecosistema Playa Blanca</th></tr>
+    <tr><td><b>Qué entrega</b></td><td class="c">Campañas y un PDF mensual</td><td class="c"><b>Sistema completo captación → venta</b></td></tr>
+    <tr><td><b>Seguimiento del lead</b></td><td class="c">“Eso es del cliente”</td><td class="c"><b>Automático: WhatsApp + email + retargeting</b></td></tr>
+    <tr><td><b>Visibilidad</b></td><td class="c">Reporte a fin de mes</td><td class="c"><b>Panel en vivo + reportes diarios</b></td></tr>
+    <tr><td><b>La data</b></td><td class="c">Vive en sus herramientas</td><td class="c"><b>Es suya, en sus sistemas</b></td></tr>
+    <tr><td><b>Costo típico</b></td><td class="c">$2,500 – $5,000/mes solo por ads</td><td class="c"><b>$1,399/mes todo incluido</b></td></tr>
+  </table>
+
+  <div class="pfoot"><span><b>Playa Blanca Residences</b> · Propuesta de Ecosistema de Crecimiento</span><span>pág. 5</span></div>
+</div>
+
+<!-- ============ PÁGINA 6 · EL PAQUETE $1,399 ============ -->
+<div class="page">
+  <div class="kicker">La propuesta · Plan Ecosistema</div>
+  <h2>Todo el sistema, operado y mejorado cada mes — $1,399/mes</h2>
+  <div class="secline"></div>
+
+  <table>
+    <tr><th style="width:64%">Qué incluye (12 componentes)</th><th class="r">Valor de mercado*</th></tr>
+    <tr><td><b>1 · Gestión completa de campañas Meta</b> — Panamá + Colombia: estrategia, optimización diaria, escalado, presupuesto orientado a compradores de calidad.</td><td class="r tval">$1,200/mes</td></tr>
+    <tr><td><b>2 · Creativos publicitarios semanales</b> — piezas nuevas cada semana con el motor propio de IA + biblioteca real del proyecto. (La fatiga creativa es real: un creativo llegó a encarecer su costo por lead 88% — por eso se renuevan sin parar.)</td><td class="r tval">$600/mes</td></tr>
+    <tr><td><b>3 · Guiones de alta conversión</b> — ángulos y textos probados (Retiro, Confianza, Legado, Bienestar) para anuncios y video.</td><td class="r tval">$300/mes</td></tr>
+    <tr><td><b>4 · Mantenimiento y optimización de las 2 webs</b> — velocidad, formularios, mejoras de conversión continuas.</td><td class="r tval">$250/mes</td></tr>
+    <tr><td><b>5 · Tracking de nivel corporativo</b> — píxeles, API de conversiones, eventos, Clarity: mantenidos y auditados.</td><td class="r tval">$350/mes</td></tr>
+    <tr><td><b>6 · Retargeting por fases</b> — públicos y creativos dedicados que se refrescan según el punto exacto donde quedó cada lead (normalmente un servicio aparte).</td><td class="r tval">$300/mes</td></tr>
+    <tr><td><b>7 · Panel del CEO en tiempo real</b> — su centro de control privado, siempre actualizado.</td><td class="r tval">$300/mes</td></tr>
+    <tr><td><b>8 · Reportes automáticos por WhatsApp</b> — alerta por lead + cierres diario, semanal y mensual con Excel accionable (links por lead).</td><td class="r tval">$250/mes</td></tr>
+    <tr><td><b>9 · Secuencias de email automáticas</b> — 5 etapas activas con medición de aperturas y clics; ningún lead se queda sin seguimiento.</td><td class="r tval">$450/mes</td></tr>
+    <tr><td><b>10 · Integraciones y sincronización de data</b> — CRM ↔ Meta ↔ web vigiladas 24/7; si algo se rompe, se detecta y se arregla.</td><td class="r tval">$200/mes</td></tr>
+    <tr><td><b>11 · Soporte prioritario + llamada estratégica mensual</b> — revisión de números, decisiones y siguiente jugada, juntos.</td><td class="r tval">$150/mes</td></tr>
+    <tr><td><b>12 · Mejoras continuas del sistema</b> — cada mes una automatización o mejora nueva, según lo que el negocio pida.</td><td class="r tval">$300/mes</td></tr>
+    <tr class="trow-total"><td>Valor total si contratara cada pieza por separado</td><td class="r"><span class="strike" style="color:#9DB2C6">$4,650/mes</span></td></tr>
+    <tr class="trow-total"><td>Su inversión — todo integrado en un solo sistema</td><td class="r"><span class="gold">$1,399/mes</span></td></tr>
+  </table>
+
+  <div class="note" style="margin-top:4mm">*Tarifas de referencia del mercado para cada servicio contratado por separado (agencias, freelancers senior y herramientas SaaS equivalentes). La ventaja no es solo el precio: es que aquí <b>las 12 piezas se hablan entre sí</b> — eso es lo que ninguna colección de proveedores sueltos puede dar.</div>
+
+  <div class="pfoot"><span><b>Playa Blanca Residences</b> · Propuesta de Ecosistema de Crecimiento</span><span>pág. 6</span></div>
+</div>
+
+<!-- ============ PÁGINA 7 · CADENCIA ============ -->
+<div class="page">
+  <div class="kicker">Qué recibe, y cuándo</div>
+  <h2>Un ritmo de trabajo que nunca se detiene</h2>
+  <div class="secline"></div>
+
+  <div class="grid3">
+    <div class="colcad">
+      <div class="h">Cada día <em>AUTOMÁTICO</em></div>
+      <ul>
+        <li><b>Alerta por cada lead nuevo</b> al grupo de WhatsApp: nombre, presupuesto, plazo, campaña, asesor — con link para escribirle y abrir su ficha.</li>
+        <li><b>Cierre del día (11:59 p.m.)</b>: leads, calientes, plazos de compra, % contactados, mejor ángulo, acumulados de semana y mes.</li>
+        <li><b>Excel del día adjunto</b>: lead por lead, Panamá y Colombia, con quién fue asignado y quién sigue sin tomar.</li>
+        <li><b>Vigía de sincronización</b>: si un lead no llega al CRM, se detecta el mismo día.</li>
+      </ul>
+    </div>
+    <div class="colcad">
+      <div class="h">Cada semana <em>DOM 11:59 PM + ENTREGA</em></div>
+      <ul>
+        <li><b>Cierre semanal</b> (domingo→domingo exacto) con su Excel del periodo.</li>
+        <li><b>2–3 creativos nuevos</b> + guiones para la semana siguiente.</li>
+        <li><b>Refresh de públicos de retargeting</b> por fase.</li>
+        <li><b>Optimización de campañas</b>: mover presupuesto hacia lo que trae compradores, apagar lo que no.</li>
+      </ul>
+    </div>
+    <div class="colcad">
+      <div class="h">Cada mes <em>ÚLTIMO DÍA + LLAMADA</em></div>
+      <ul>
+        <li><b>Cierre mensual</b> (del 01 al último día) con Excel completo del mes.</li>
+        <li><b>Llamada estratégica</b> con usted: números, aprendizajes, siguiente jugada.</li>
+        <li><b>Mantenimiento de las webs</b> + auditoría de tracking.</li>
+        <li><b>Una mejora nueva del sistema</b> — cada mes el ecosistema hace algo que el mes pasado no hacía.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:7mm">
+    <div class="q">Usted no vuelve a pedir un reporte. Los reportes lo buscan a usted — con la data lista para actuar, no para interpretar.</div>
+    <div class="who">— El principio de diseño de todo el sistema</div>
+  </div>
+
+  <div class="note gold-note"><b>Todo en hora de Panamá.</b> El día cierra a las 11:59 p.m., la semana el domingo, el mes el último día. Documentado, archivado y con respaldo — nada se pierde.</div>
+
+  <div class="pfoot"><span><b>Playa Blanca Residences</b> · Propuesta de Ecosistema de Crecimiento</span><span>pág. 7</span></div>
+</div>
+
+<!-- ============ PÁGINA 8 · EMAILS + RETARGETING ============ -->
+<div class="page">
+  <div class="kicker">Seguimiento automático</div>
+  <h2>Ningún lead se queda sin un “segundo toque”</h2>
+  <div class="secline"></div>
+  <p class="lead" style="margin-bottom:4mm">Cada lead entra a una secuencia según su comportamiento. Cada correo mide aperturas y clics. Y cada fase alimenta un público de retargeting en Meta — <b>la data nunca se pierde: se reutiliza.</b></p>
+
+  <table>
+    <tr><th style="width:16%">Momento</th><th style="width:26%">Correo que recibe</th><th style="width:29%">Objetivo</th><th>Retargeting que alimenta</th></tr>
+    <tr><td><b>Al registrarse</b><br><span class="tval">inmediato</span></td><td><b>Bienvenida</b> — marca premium, “un asesor lo contactará”.</td><td>Confirmar que cayó en el lugar correcto; abrir la relación.</td><td>Público “registrados” → excluirlos de captación (no pagar dos veces).</td></tr>
+    <tr><td><b>No contestó</b><br><span class="tval">a las 48 h</span></td><td><b>Seguimiento</b> — “seguimos a su disposición, ¿qué horario le conviene?”.</td><td>Rescatar al que no atendió la llamada.</td><td>Público “sin contactar” → anuncios de recordatorio suave.</td></tr>
+    <tr><td><b>Nutrición</b><br><span class="tval">día 4–5</span></td><td><b>El proyecto</b> — playa + laguna, amenidades, estilo de vida.</td><td>Construir deseo con los diferenciales reales.</td><td>Público “abrieron sin agendar” → anuncios del proyecto.</td></tr>
+    <tr><td><b>Interesado</b><br><span class="tval">día 7</span></td><td><b>Invitación a visita</b> — “ninguna foto le hace justicia”.</td><td>Empujar a la cita presencial: donde se vende.</td><td>Público “clic sin cita” → anuncios de agenda directa.</td></tr>
+    <tr><td><b>Se enfrió</b><br><span class="tval">día 21–30</span></td><td><b>Reactivación</b> — “su lugar frente al mar lo sigue esperando”.</td><td>Última ventana antes de archivar. Muchos vuelven aquí.</td><td>Público “fríos” → oferta/novedad del proyecto.</td></tr>
+  </table>
+
+  <div class="grid3" style="margin-top:5mm">
+    <div class="card"><h3>📬 Los 5 correos ya existen</h3><p>Diseñados con la marca (navy + dorado), listos en la plataforma de envío. Solo falta encenderlos.</p></div>
+    <div class="card"><h3>📈 Medición real</h3><p>Tasa de apertura, clics y bajas por correo y por etapa. Sabremos qué mensaje mueve a su comprador — y lo replicamos en los anuncios.</p></div>
+    <div class="card"><h3>🔁 Circuito cerrado</h3><p>Email ↔ anuncios ↔ CRM conectados: el que abre pero no agenda ve un anuncio distinto al que nunca abrió. Precisión, no bombardeo.</p></div>
+  </div>
+
+  <div class="note" style="margin-top:5mm"><b>Cumplimiento:</b> todos los envíos con dominio verificado de la marca, enlace de baja en cada correo y solo a personas que dejaron sus datos pidiendo información. Reputación del dominio cuidada como un activo.</div>
+
+  <div class="pfoot"><span><b>Playa Blanca Residences</b> · Propuesta de Ecosistema de Crecimiento</span><span>pág. 8</span></div>
+</div>
+
+<!-- ============ PÁGINA 9 · CRM PROPIO ============ -->
+<div class="page">
+  <div class="kicker">El módulo que se paga solo · Plan Completo</div>
+  <h2>Su propio CRM: elimine los $900 de HubSpot para siempre</h2>
+  <div class="secline"></div>
+  <p class="lead" style="margin-bottom:4mm">HubSpot es una gran herramienta… para empresas que usan el 100%. Playa Blanca usa <b>~8 de sus ~70 funciones</b> — paga por las otras 62 sin tocarlas. Y sus propios asesores se quejan: no deja agendar, va lento, nadie los capacitó. La alternativa: un CRM <b>construido a la medida de SU operación</b>, conectado nativamente a todo el ecosistema — por casi la mitad del costo.</p>
+
+  <table>
+    <tr><th style="width:34%">&nbsp;</th><th class="c">HubSpot (hoy)</th><th class="c">CRM propio Playa Blanca</th></tr>
+    <tr><td><b>Costo mensual</b></td><td class="c">~$900</td><td class="c"><b>$499</b> (operación + evolución)</td></tr>
+    <tr><td><b>La data</b></td><td class="c">Alquilada — vive en su plataforma</td><td class="c"><b>Suya, para siempre, exportable</b></td></tr>
+    <tr><td><b>Personalización</b></td><td class="c">Limitada, cada extra cuesta</td><td class="c"><b>Total: se adapta a su proceso de venta</b></td></tr>
+    <tr><td><b>Usuarios</b></td><td class="c">Se paga por asiento</td><td class="c"><b>Ilimitados</b> (asesores, gerencia, usted)</td></tr>
+    <tr><td><b>Inteligencia artificial</b></td><td class="c">Módulos aparte, en inglés</td><td class="c"><b>Incluida y creciendo</b>: scoring de leads, resúmenes, alertas inteligentes</td></tr>
+    <tr><td><b>Integración con el ecosistema</b></td><td class="c">Parcial (ya se rompió una vez)</td><td class="c"><b>Nativa</b> — panel, reportes, emails y ads: una sola pieza</td></tr>
+    <tr><td><b>Evolución</b></td><td class="c">La decide HubSpot</td><td class="c"><b>La decide usted</b> — cada mes, mejoras a pedido</td></tr>
+  </table>
+
+  <div class="stats" style="grid-template-columns:repeat(3,1fr);margin-top:5mm">
+    <div class="stat"><b>−$401</b><span>al mes vs. HubSpot</span></div>
+    <div class="stat"><b>$4,812</b><span>ahorro anual directo</span></div>
+    <div class="stat"><b>100%</b><span>de su data, migrada sin pérdida</span></div>
+  </div>
+
+  <div class="note gold-note"><b>Migración incluida y sin riesgo:</b> los dos sistemas corren en paralelo durante la transición. No se apaga HubSpot hasta que cada contacto, nota y etapa esté verificado en el nuevo CRM. <b>Ni un lead se pierde.</b></div>
+
+  <div class="pfoot"><span><b>Playa Blanca Residences</b> · Propuesta de Ecosistema de Crecimiento</span><span>pág. 9</span></div>
+</div>
+
+<!-- ============ PÁGINA 10 · LOS NÚMEROS ============ -->
+<div class="page">
+  <div class="kicker">Los números, lado a lado</div>
+  <h2>La opción completa cuesta menos que seguir como hoy… haciendo más</h2>
+  <div class="secline"></div>
+
+  <table>
+    <tr><th style="width:40%">&nbsp;</th><th class="c">Hoy</th><th class="c">Plan Ecosistema</th><th class="c" style="background:var(--navy2)">Plan Completo ★</th></tr>
+    <tr><td><b>Gestión + ecosistema (12 componentes)</b></td><td class="c">$400 (gestión básica)</td><td class="c">$1,399</td><td class="c"><b>$1,399</b></td></tr>
+    <tr><td><b>CRM</b></td><td class="c">HubSpot ~$900</td><td class="c">HubSpot ~$900</td><td class="c"><b>CRM propio $499</b></td></tr>
+    <tr><td><b>Total mensual</b></td><td class="c"><b>~$1,300</b></td><td class="c"><b>~$2,299</b></td><td class="c"><b>$1,898</b></td></tr>
+    <tr><td><b>Emails automáticos + retargeting por fase</b></td><td class="c">✗</td><td class="c">✓</td><td class="c">✓</td></tr>
+    <tr><td><b>Reportes automáticos + panel en vivo</b></td><td class="c">parcial*</td><td class="c">✓</td><td class="c">✓</td></tr>
+    <tr><td><b>Creativos y guiones semanales</b></td><td class="c">✗</td><td class="c">✓</td><td class="c">✓</td></tr>
+    <tr><td><b>IA avanzada en el CRM (scoring predictivo, resúmenes)</b></td><td class="c">✗</td><td class="c">✗</td><td class="c">✓</td></tr>
+    <tr><td><b>Plataforma 100% propia (data fuera de HubSpot)</b></td><td class="c">✗</td><td class="c">✗</td><td class="c">✓</td></tr>
+  </table>
+  <div class="note" style="margin-top:3mm">*Lo entregado estas semanas (panel, reportes, landings) es la <b>demostración funcionando</b> del ecosistema. El plan lo formaliza, lo opera y lo evoluciona cada mes.</div>
+
+  <div class="grid2" style="margin-top:5mm">
+    <div class="card" style="border-color:#eadfc4;background:#FFFDF7">
+      <h3 style="color:#8a6d2f">La lectura importante</h3>
+      <p style="margin-top:1.5mm">El <b>Plan Completo ($1,898)</b> cuesta <b>$401 menos</b> que el Ecosistema manteniendo HubSpot ($2,299). Es decir: <b>el CRM propio sale “gratis” y encima ahorra dinero.</b><br><br>Frente a lo que paga hoy (~$1,300 con huecos de seguimiento y una herramienta sin usar), la diferencia real es <b>+$598/mes por el sistema completo</b>.</p>
+    </div>
+    <div class="card">
+      <h3>¿Y el retorno?</h3>
+      <p style="margin-top:1.5mm">Hoy el sistema ya identifica <b>compradores potenciales (+$300K declarados) a ~$213 cada uno</b>.<br><br>Inversión anual del Plan Completo: <b>$22,776</b>. Una sola venta de una propiedad de $300K representa <b>13 veces</b> esa inversión anual — y el pipeline potencial declarado del último mes fue <b>$38M</b>: cerrar apenas el <b>1%</b> de un solo mes así ($380K) equivale a casi <b>17 veces</b> la inversión anual del sistema.<br><span class="tval" style="font-size:7.5pt">Proyección aritmética sobre data real — no es una promesa de resultados.</span></p>
+    </div>
+  </div>
+
+  <div class="pfoot"><span><b>Playa Blanca Residences</b> · Propuesta de Ecosistema de Crecimiento</span><span>pág. 10</span></div>
+</div>
+
+<!-- ============ PÁGINA 11 · ROADMAP + GARANTÍAS ============ -->
+<div class="page">
+  <div class="kicker">Los primeros 90 días</div>
+  <h2>Un plan concreto, con entregas cada mes</h2>
+  <div class="secline"></div>
+
+  <div class="grid3">
+    <div class="colcad">
+      <div class="h">Mes 1 <em>ENCENDER</em></div>
+      <ul>
+        <li><b>Secuencias de email en vivo</b> con dominio verificado de la marca.</li>
+        <li><b>Reportes de WhatsApp afinados</b> con el feedback del grupo oficial de asesores (ya en producción).</li>
+        <li><b>Retargeting fase 1</b>: públicos de registrados y sin-contactar activos.</li>
+        <li><b>Línea base de métricas</b>: costo por comprador potencial, % contacto, aperturas.</li>
+      </ul>
+    </div>
+    <div class="colcad">
+      <div class="h">Mes 2 <em>MIGRAR</em></div>
+      <ul>
+        <li><b>CRM propio en paralelo</b> con HubSpot: migración completa verificada.</li>
+        <li><b>Scoring básico de leads</b>: los calientes arriba, siempre.</li>
+        <li><b>Retargeting fases 2–3</b>: nutrición e invitación a cita.</li>
+        <li><b>Apagado de HubSpot</b> → el ahorro empieza a correr.</li>
+      </ul>
+    </div>
+    <div class="colcad">
+      <div class="h">Mes 3 <em>ACELERAR</em></div>
+      <ul>
+        <li><b>IA sobre su data</b>: scoring predictivo y resúmenes automáticos para gerencia.</li>
+        <li><b>Optimización por señales de calidad</b>: Meta aprende quién COMPRA, no quién llena formularios.</li>
+        <li><b>Base lista para Google Ads</b> (búsqueda de alta intención) si decidimos ampliar.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:7mm;font-size:12pt" class="serif">Las reglas del juego (sus garantías)</h3>
+  <div class="grid2" style="margin-top:3mm">
+    <div class="check" style="border:0"><div class="ic">✓</div><div><b>Sin permanencia</b><span>Mes a mes. Si un mes no ve el valor, lo conversamos o lo cancela. Así de simple.</span></div></div>
+    <div class="check" style="border:0"><div class="ic">✓</div><div><b>La data es suya. Siempre.</b><span>Leads, historiales, métricas: exportables en cualquier momento, se vaya o se quede.</span></div></div>
+    <div class="check" style="border:0"><div class="ic">✓</div><div><b>Transición asistida</b><span>Si algún día decide irse, entrego todo ordenado y documentado. Sin secuestro de cuentas.</span></div></div>
+    <div class="check" style="border:0"><div class="ic">✓</div><div><b>Respuesta en menos de 24 h</b><span>Soporte prioritario por WhatsApp + la llamada estratégica de cada mes.</span></div></div>
+  </div>
+
+  <div class="quote" style="margin-top:5mm">
+    <div class="q">Mi trabajo no es venderle horas. Es que este sistema le produzca más de lo que cuesta — cada mes, medible, en su panel.</div>
+    <div class="who">— Juan Escorcha</div>
+  </div>
+
+  <div class="pfoot"><span><b>Playa Blanca Residences</b> · Propuesta de Ecosistema de Crecimiento</span><span>pág. 11</span></div>
+</div>
+
+<!-- ============ PÁGINA 12 · CIERRE ============ -->
+<div class="page">
+  <div class="kicker">Decisión</div>
+  <h2>Dos formas de avanzar</h2>
+  <div class="secline"></div>
+
+  <div class="grid2" style="margin-top:2mm">
+    <div class="optbox">
+      <h3 class="serif">Plan Ecosistema</h3>
+      <div class="price">$1,399<small> /mes</small></div>
+      <p style="font-size:8.5pt;color:var(--mut)">El sistema completo de captación, seguimiento y reportes. Mantiene HubSpot como CRM.</p>
+      <ul>
+        <li>Los 12 componentes del ecosistema</li>
+        <li>Reportes automáticos + panel en vivo</li>
+        <li>Emails + retargeting por fases</li>
+        <li>Creativos y guiones semanales</li>
+        <li class="no">CRM propio (sigue pagando HubSpot ~$900)</li>
+        <li class="no">IA avanzada del CRM (scoring predictivo)</li>
+      </ul>
+      <p style="margin-top:3mm;font-size:8.5pt;color:var(--mut)">Costo total real: $1,399 + ~$900 HubSpot = <b>~$2,299/mes</b></p>
+    </div>
+    <div class="optbox rec">
+      <div class="badge">Recomendado · cuesta menos</div>
+      <h3 class="serif">Plan Completo</h3>
+      <div class="price">$1,898<small> /mes</small></div>
+      <p style="font-size:8.5pt;color:var(--mut)">Todo el ecosistema + su propio CRM. HubSpot se elimina — y con él, la fuga.</p>
+      <ul>
+        <li><b>Todo lo del Plan Ecosistema</b></li>
+        <li><b>CRM propio</b> a la medida — usuarios ilimitados</li>
+        <li><b>Migración completa</b> desde HubSpot, sin pérdida</li>
+        <li><b>IA incluida</b>: scoring, resúmenes, alertas</li>
+        <li><b>Dueño de su data</b> para siempre</li>
+        <li><b>$401/mes menos</b> que Ecosistema + HubSpot</li>
+      </ul>
+      <p style="margin-top:3mm;font-size:8.5pt;color:#8a6d2f"><b>Costo total real: $1,898/mes — todo incluido.</b></p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:7mm;font-size:12pt" class="serif">Para arrancar solo necesito dos cosas</h3>
+  <div class="grid2" style="margin-top:2mm">
+    <div class="card"><h3>1 · Su OK a esta propuesta</h3><p>Respondiendo este documento o en la próxima llamada. El plan de 90 días arranca esa misma semana.</p></div>
+    <div class="card"><h3>2 · 30 minutos con su equipo</h3><p>Una llamada con los asesores para activar el grupo oficial de reportes y alinear el proceso de seguimiento.</p></div>
+  </div>
+
+  <div class="quote" style="margin-top:6mm">
+    <div class="q">Usted ya vio el sistema funcionando con sus propios leads. La pregunta no es si funciona — es cuánto le cuesta cada mes que sigue apagado a medias.</div>
+    <div class="who">— Con aprecio, Juan Escorcha · JuanConvierte</div>
+  </div>
+
+  <div class="pfoot"><span><b>Playa Blanca Residences</b> · Propuesta confidencial · Julio 2026 · Vigencia 15 días</span><span>pág. 12</span></div>
+</div>
+
+</body>
+</html>

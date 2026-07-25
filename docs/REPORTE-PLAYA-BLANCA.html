@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playa Blanca · Reporte de Rendimiento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080b16; --bg2:#0c1122; --card:rgba(22,26,48,.72); --card2:rgba(30,25,60,.55);
+  --line:rgba(255,255,255,.07); --line2:rgba(140,120,255,.22);
+  --ink:#eef1fb; --ink2:#9aa3c7; --ink3:#5f6791;
+  --violet:#8b6dff; --violet2:#5b3fd6; --gold:#e7c98a; --gold2:#c9a24b;
+  --green:#38d39f; --red:#ff6b7a; --amber:#f0b45a; --cyan:#54c6ff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:
+  radial-gradient(1200px 600px at 85% -10%, rgba(123,92,255,.18), transparent 60%),
+  radial-gradient(900px 500px at -10% 10%, rgba(80,60,200,.14), transparent 55%),
+  linear-gradient(180deg,var(--bg),var(--bg2));
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+.wrap{max-width:1180px;margin:0 auto;padding:34px 28px 70px}
+
+/* header */
+.top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:30px}
+.brand{display:flex;align-items:center;gap:13px}
+.mk{width:46px;height:46px;border-radius:13px;background:linear-gradient(150deg,#1a2440,#0d1428);
+  border:1px solid var(--line2);display:grid;place-items:center;font-size:22px;box-shadow:0 8px 30px rgba(123,92,255,.25)}
+.brand .name{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:23px;letter-spacing:.06em;line-height:1}
+.brand .name b{color:var(--gold)}
+.brand small{display:block;font-family:'Inter';font-size:9.5px;letter-spacing:.32em;color:var(--ink3);text-transform:uppercase;margin-top:4px}
+.spacer{flex:1}
+.tag{font-size:11px;font-weight:600;color:var(--ink2);border:1px solid var(--line);background:rgba(255,255,255,.03);padding:8px 14px;border-radius:30px;display:inline-flex;gap:8px;align-items:center}
+.live{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+
+.h1{font-weight:800;font-size:30px;letter-spacing:-.02em;margin-bottom:5px}
+.h1 .g{background:linear-gradient(90deg,var(--gold),#fff6df);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:var(--ink2);font-size:14px;margin-bottom:26px}
+
+.grid{display:grid;gap:16px}
+.kpis{grid-template-columns:repeat(4,1fr)}
+@media(max-width:820px){.kpis{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;backdrop-filter:blur(14px);position:relative;overflow:hidden}
+.card::after{content:"";position:absolute;inset:0;border-radius:20px;pointer-events:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.kpi .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:18px;border:1px solid var(--line2)}
+.kpi.hero{background:linear-gradient(150deg,rgba(123,92,255,.9),rgba(70,48,180,.85));border:0;box-shadow:0 16px 44px rgba(90,63,214,.4)}
+.kpi.hero .ic{background:rgba(255,255,255,.16);border-color:transparent}
+.kpi .lbl{font-size:12px;color:var(--ink2);font-weight:500;margin-top:14px}
+.kpi.hero .lbl{color:rgba(255,255,255,.85)}
+.kpi .num{font-size:32px;font-weight:800;letter-spacing:-.02em;margin-top:4px;line-height:1}
+.kpi .foot{font-size:11px;color:var(--ink3);margin-top:8px}
+.kpi.hero .foot{color:rgba(255,255,255,.7)}
+.kpi.danger .num{color:var(--red)} .kpi.danger .ic{color:var(--red);background:rgba(255,107,122,.12)}
+
+.two{grid-template-columns:1.5fr 1fr;margin-top:16px}
+@media(max-width:820px){.two{grid-template-columns:1fr}}
+.hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.hd h3{font-size:15px;font-weight:700}
+.hd .mini{font-size:11px;color:var(--ink3)}
+
+/* funnel bars */
+.frow{margin:13px 0}
+.frow .t{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:7px}
+.frow .t b{font-weight:700} .frow .t .pct{color:var(--ink2);font-weight:700}
+.bar{height:11px;border-radius:8px;background:rgba(255,255,255,.05);overflow:hidden}
+.bar span{display:block;height:100%;border-radius:8px}
+.b-red span{background:linear-gradient(90deg,#ff5b6b,#ff8a97)}
+.b-amber span{background:linear-gradient(90deg,#e79a3f,#f5c072)}
+.b-violet span{background:linear-gradient(90deg,#7b5cff,#a48bff)}
+.b-green span{background:linear-gradient(90deg,#2fbf8f,#59e0b6)}
+.b-cyan span{background:linear-gradient(90deg,#3aa8ff,#7bd0ff)}
+.b-gray span{background:linear-gradient(90deg,#5a628c,#7c85b8)}
+
+/* country */
+.cty{display:flex;align-items:center;gap:12px;margin:16px 0}
+.cty .fl{font-size:22px}
+.cty .body{flex:1}
+.cty .body .t{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:6px}
+.cty .body .t b{font-weight:700}
+
+/* insight */
+.insight{margin-top:16px;background:linear-gradient(120deg,rgba(255,107,122,.14),rgba(123,92,255,.10));
+  border:1px solid rgba(255,107,122,.3);border-radius:20px;padding:22px 24px;display:flex;gap:18px;align-items:center}
+.insight .big{font-size:46px;font-weight:900;color:var(--red);line-height:1;letter-spacing:-.03em;text-shadow:0 0 30px rgba(255,107,122,.4)}
+.insight .txt h4{font-size:15px;font-weight:800;margin-bottom:4px}
+.insight .txt p{font-size:12.5px;color:var(--ink2);line-height:1.5}
+.insight.pos{background:linear-gradient(120deg,rgba(56,211,159,.16),rgba(123,92,255,.10));border-color:rgba(56,211,159,.35)}
+.insight.pos .big{text-shadow:0 0 30px rgba(56,211,159,.4)}
+.insight .big{flex:none} .two .insight{margin-top:0}
+
+/* plan */
+.sec-title{font-size:15px;font-weight:700;margin:30px 4px 14px;display:flex;align-items:center;gap:9px}
+.plan{grid-template-columns:repeat(3,1fr)}
+@media(max-width:820px){.plan{grid-template-columns:1fr}}
+.pcard .n{width:30px;height:30px;border-radius:9px;background:linear-gradient(150deg,var(--violet),var(--violet2));display:grid;place-items:center;font-weight:800;font-size:14px}
+.pcard h4{font-size:14px;font-weight:700;margin:12px 0 6px}
+.pcard p{font-size:12.5px;color:var(--ink2);line-height:1.5}
+.next{margin-top:16px;background:linear-gradient(120deg,rgba(231,201,138,.12),rgba(123,92,255,.10));border:1px solid var(--line2);border-radius:18px;padding:18px 22px}
+.next h4{font-size:14px;font-weight:800;color:var(--gold);margin-bottom:5px}
+.next p{font-size:13px;color:var(--ink2);line-height:1.5}
+
+.foot{text-align:center;color:var(--ink3);font-size:11px;margin-top:40px;letter-spacing:.03em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand">
+      <div class="mk">🌴</div>
+      <div><div class="name serif">PLAYA <b>BLANCA</b></div><small>Beach &amp; Lagoon Residences</small></div>
+    </div>
+    <div class="spacer"></div>
+    <span class="tag"><span class="live"></span> Datos reales del CRM</span>
+  </div>
+
+  <div class="h1">Reporte de <span class="g">Rendimiento</span></div>
+  <div class="sub">Campaña de leads · últimas 3 semanas · 24 jun – 15 jul 2026</div>
+
+  <!-- KPIs -->
+  <div class="grid kpis">
+    <div class="card kpi hero">
+      <div class="ic">📥</div>
+      <div class="lbl">Total de leads</div>
+      <div class="num">185</div>
+      <div class="foot">2 países · 21 días activos</div>
+    </div>
+    <div class="card kpi">
+      <div class="ic" style="color:var(--cyan);background:rgba(84,198,255,.1)">⚡</div>
+      <div class="lbl">Promedio por día</div>
+      <div class="num">8.8</div>
+      <div class="foot">flujo constante de tráfico</div>
+    </div>
+    <div class="card kpi">
+      <div class="ic" style="color:var(--green);background:rgba(56,211,159,.1)">🌱</div>
+      <div class="lbl">Pipeline vivo</div>
+      <div class="num">38</div>
+      <div class="foot">seguimiento + interés a futuro</div>
+    </div>
+    <div class="card kpi danger">
+      <div class="ic">📵</div>
+      <div class="lbl">No contactables</div>
+      <div class="num">45%</div>
+      <div class="foot">el cuello de botella real</div>
+    </div>
+  </div>
+
+  <!-- Funnel + Country -->
+  <div class="grid two">
+    <div class="card">
+      <div class="hd"><h3>Estado de los leads</h3><span class="mini">185 leads · 3 semanas</span></div>
+      <div class="frow"><div class="t"><b>📵 No contactable</b><span class="pct">45% · 84</span></div><div class="bar b-red"><span style="width:45%"></span></div></div>
+      <div class="frow"><div class="t"><b>❌ No interesado</b><span class="pct">27% · 50</span></div><div class="bar b-amber"><span style="width:27%"></span></div></div>
+      <div class="frow"><div class="t"><b>🔄 Seguimiento</b><span class="pct">13% · 24</span></div><div class="bar b-violet"><span style="width:13%"></span></div></div>
+      <div class="frow"><div class="t"><b>⏳ Interés a futuro</b><span class="pct">8% · 14</span></div><div class="bar b-green"><span style="width:8%"></span></div></div>
+      <div class="frow"><div class="t"><b>◻️ Sin marcar</b><span class="pct">5% · 10</span></div><div class="bar b-gray"><span style="width:5%"></span></div></div>
+      <div class="frow"><div class="t"><b>💵 Ingreso bajo</b><span class="pct">2% · 3</span></div><div class="bar b-cyan"><span style="width:2%"></span></div></div>
+    </div>
+    <div class="card">
+      <div class="hd"><h3>Leads por país</h3><span class="mini">origen</span></div>
+      <div class="cty"><div class="fl">🇵🇦</div><div class="body"><div class="t"><b>Panamá</b><span>58% · 108</span></div><div class="bar b-violet"><span style="width:58%"></span></div></div></div>
+      <div class="cty"><div class="fl">🇨🇴</div><div class="body"><div class="t"><b>Colombia</b><span>42% · 77</span></div><div class="bar b-cyan"><span style="width:42%"></span></div></div></div>
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--line)">
+        <div class="hd"><h3 style="font-size:14px">Embudo hasta hoy</h3></div>
+        <div style="font-size:12.5px;color:var(--ink2);line-height:2.1">
+          185 leads → <b style="color:var(--ink)">72 gestionables</b> (contactados) → <b style="color:var(--green)">38 vivos</b> → <b style="color:var(--gold)">0 citas</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Asset (positivo) + Foco -->
+  <div class="grid two" style="margin-top:16px">
+    <div class="insight pos">
+      <div class="big" style="color:var(--green)">38</div>
+      <div class="txt">
+        <h4>Prospectos vivos — tu banco de citas 🌱</h4>
+        <p><b>24 en seguimiento activo + 14 con interés a futuro.</b> En propiedad de alto valor el "todavía no" madura a cita con el nurturing correcto. Este es el pipeline real que convierte en los próximos meses.</p>
+      </div>
+    </div>
+    <div class="insight">
+      <div class="big">45%</div>
+      <div class="txt">
+        <h4>El foco a optimizar</h4>
+        <p>Casi la mitad no se logra contactar (datos errados / velocidad). El tráfico funciona; el cuello está en <b>contactar</b>. Ahí atacamos: mejor data + calidad + velocidad.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Plan -->
+  <div class="sec-title">🚀 Plan de optimización — en marcha</div>
+  <div class="grid plan">
+    <div class="card pcard"><div class="n">1</div><h4>Creativos</h4><p>Escalar los anuncios que funcionan (imagen #3), mostrar precio como filtro, mensajes más persuasivos para atraer el perfil correcto.</p></div>
+    <div class="card pcard"><div class="n">2</div><h4>Segmentación</h4><p>Abrir público inglés (25-65, hijos de empresarios), mantener panameño mayor, sumar retirados en Chiriquí. Ajustar con la data a los 15 días.</p></div>
+    <div class="card pcard"><div class="n">3</div><h4>Filtro de leads</h4><p>Marcar el resultado de cada lead (interesado/no) para alimentar la base y que el algoritmo aprenda el perfil que sí compra.</p></div>
+  </div>
+
+  <div class="next">
+    <h4>▶ Próximo paso — el que cambia el juego</h4>
+    <p><b>Medir citas y ventas reales</b> y devolvérselas a Meta (con el "pasaporte" de cada lead). Así Meta deja de buscar curiosos y empieza a buscar <b>compradores reales</b> → mejores leads + ROAS real con el tiempo.</p>
+  </div>
+
+  <div class="foot">PLAYA BLANCA RESIDENCES · Reporte generado con datos reales del CRM · 15 jul 2026</div>
+</div>
+</body>
+</html>

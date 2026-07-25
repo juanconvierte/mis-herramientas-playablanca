@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>CRM Playa Blanca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e9ebf1;--panel:#fff;--text:#151a26;--mut:#6b7280;--mut2:#9aa1ae;--line:#edeef2;--line2:#e5e7ec;
+--accent:#6d5ef0;--mint:#e7f8f0;--mint-t:#10b981;--shadow:0 1px 2px rgba(16,24,40,.05),0 6px 16px rgba(16,24,40,.06);}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+svg{display:block}
+/* LOGIN */
+.login{position:fixed;inset:0;background:linear-gradient(135deg,#0e1630,#16204a);display:flex;align-items:center;justify-content:center;z-index:50}
+.login .box{background:#fff;border-radius:18px;padding:36px 34px;width:340px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.login .logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#6d5ef0,#9b7cff);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:1.3rem}
+.login h1{font-size:1.25rem;font-weight:800;margin-bottom:4px}
+.login p{color:var(--mut);font-size:.86rem;margin-bottom:22px}
+.login input{width:100%;text-align:center;font-size:1.6rem;letter-spacing:.4em;font-weight:800;padding:12px;border:2px solid var(--line2);border-radius:12px;font-family:inherit;outline:none}
+.login input:focus{border-color:var(--accent)}
+.login button{width:100%;margin-top:14px;padding:13px;border:0;border-radius:12px;background:var(--accent);color:#fff;font-weight:800;font-size:.95rem;font-family:inherit;cursor:pointer}
+.login .err{color:#e5484d;font-size:.8rem;margin-top:10px;min-height:16px;font-weight:600}
+.login .hint{color:var(--mut2);font-size:.72rem;margin-top:14px}
+/* APP */
+.app{display:none;min-height:100vh}
+.app.on{display:block}
+.top{background:#fff;border-bottom:1px solid var(--line);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:20}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#6d5ef0,#9b7cff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900}
+.brand b{font-weight:800;font-size:1.05rem}.brand span{display:block;font-size:.72rem;color:var(--mut)}
+.top .who{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--mut);font-weight:600}
+.top .who .av{width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.72rem}
+.btn{border:0;background:var(--accent);color:#fff;font-family:inherit;font-weight:700;font-size:.85rem;padding:9px 15px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.btn.ghost{background:#fff;border:1px solid var(--line2);color:var(--mut)}
+.bar{padding:16px 24px 4px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.bar h2{font-size:1.4rem;font-weight:800}
+.bar .money{margin-left:auto;border:1px solid var(--line2);border-radius:10px;padding:8px 14px;font-weight:700;font-size:.85rem;background:#fff}
+.bar .money .g{color:var(--mint-t)}
+.board{display:flex;gap:16px;padding:16px 24px 30px;overflow-x:auto;align-items:flex-start}
+.col{flex:0 0 290px}
+.col-bar{height:4px;border-radius:4px;background:var(--c);margin:0 2px}
+.col-head{display:flex;align-items:center;gap:8px;padding:11px 4px}
+.col-head .nm{font-weight:800;font-size:.9rem}
+.col-head .n{color:var(--mut2);font-weight:700;font-size:.78rem;background:var(--bg);border-radius:20px;padding:2px 9px}
+.cards{display:flex;flex-direction:column;gap:11px}
+.card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px;box-shadow:var(--shadow)}
+.card .r1{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.card .ini{width:26px;height:26px;border-radius:7px;color:#fff;font-weight:800;font-size:.7rem;display:flex;align-items:center;justify-content:center;flex:0 0 26px}
+.card .nm{font-weight:800;font-size:.92rem;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .money{background:var(--mint);color:var(--mint-t);font-weight:800;font-size:.78rem;padding:3px 9px;border-radius:7px;white-space:nowrap}
+.card .r2{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:9px}
+.tag{font-weight:700;font-size:.72rem;padding:3px 9px;border-radius:6px;background:#efeafe;color:#6d5ef0}
+.card .proj{font-size:.76rem;color:var(--mut);font-weight:600}
+.card .foot{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card .sell{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--mut)}
+.card .sell .av{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800}
+.card select{font-family:inherit;font-size:.72rem;font-weight:700;border:1px solid var(--line2);border-radius:7px;padding:3px 6px;color:var(--mut);cursor:pointer}
+.empty{padding:60px 20px;text-align:center;color:var(--mut2)}
+.toast{position:fixed;bottom:20px;right:20px;background:#fff;border:1px solid var(--line2);border-left:4px solid var(--mint-t);border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.15);padding:13px 16px;font-size:.82rem;max-width:340px;animation:s .3s;z-index:60}
+@keyframes s{from{transform:translateX(120%)}to{transform:none}}
+.toast b{display:block;margin-bottom:3px}
+</style>
+</head>
+<body>
+
+<!-- LOGIN PIN -->
+<div class="login" id="login">
+  <div class="box">
+    <div class="logo">PB</div>
+    <h1>CRM Playa Blanca</h1>
+    <p>Ingresa tu PIN de vendedora</p>
+    <input id="pin" type="password" inputmode="numeric" maxlength="6" placeholder="••••" autofocus>
+    <button onclick="entrar()">Entrar</button>
+    <div class="err" id="err"></div>
+    <div class="hint">Demo: 1111 Dyana · 0000 admin (ve todo)</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+  <div class="top">
+    <div class="brand"><div class="logo">PB</div><div><b>CRM Playa Blanca</b><span>Pipeline de leads</span></div></div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="btn" onclick="simular()">⚡ Simular lead nuevo</button>
+      <div class="who"><span id="whoName">—</span><div class="av" id="whoAv">—</div></div>
+      <button class="btn ghost" onclick="salir()">Salir</button>
+    </div>
+  </div>
+  <div class="bar">
+    <h2>Pipeline</h2>
+    <div class="money"><span id="mPipe">$0</span> <span style="color:var(--mut2)">En pipeline</span> · <span class="g" id="mClosed">$0</span> <span style="color:var(--mut2)">cerrado</span></div>
+  </div>
+  <div class="board" id="board"></div>
+</div>
+
+<script>
+const STAGES=[
+ {k:"nuevo",n:"Nuevo",c:"#6d5ef0"},{k:"interesado",n:"Interesado",c:"#38a9f0"},
+ {k:"cita",n:"Cita agendada",c:"#f5a524"},{k:"negociacion",n:"Negociación",c:"#14b8a6"},
+ {k:"cerrado",n:"Cerrado",c:"#16b364"}];
+const COLORS=["#2f6dff","#7c5cfc","#16b364","#f5a524","#ef4444"];
+let me=null; // vendedora logueada (null = admin)
+const ini=s=>(s||"?").split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase();
+const colorFor=s=>COLORS[(s||"").length%COLORS.length];
+
+async function entrar(){
+  const pin=document.getElementById("pin").value.trim();
+  const err=document.getElementById("err"); err.textContent="";
+  if(pin==="0000"){ me={nombre:"Admin",id:null,admin:true}; return abrir(); }
+  try{
+    const r=await fetch("/api/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({pin})});
+    const j=await r.json();
+    if(!r.ok) throw new Error(j.error||"PIN inválido");
+    me=j.vendedora; abrir();
+  }catch(e){ err.textContent=e.message; }
+}
+function abrir(){
+  document.getElementById("login").style.display="none";
+  document.getElementById("app").classList.add("on");
+  document.getElementById("whoName").textContent=me.nombre;
+  document.getElementById("whoAv").textContent=ini(me.nombre);
+  cargar();
+}
+function salir(){ location.reload(); }
+
+async function cargar(){
+  const leads=await (await fetch("/api/leads")).json();
+  const mine=me.admin?leads:leads.filter(l=>l.vendedor_id===me.id);
+  render(mine);
+}
+function render(leads){
+  const board=document.getElementById("board");
+  board.innerHTML=STAGES.map(st=>{
+    const items=leads.filter(l=>l.estado===st.k);
+    return `<div class="col">
+      <div class="col-bar" style="--c:${st.c}"></div>
+      <div class="col-head"><span class="nm">${st.n}</span><span class="n">${items.length}</span></div>
+      <div class="cards">${items.map(card).join("")||'<div class="empty">—</div>'}</div>
+    </div>`;
+  }).join("");
+  const pipe=leads.filter(l=>l.estado!=="cerrado").reduce((a,l)=>a+budN(l.presupuesto),0);
+  const closed=leads.filter(l=>l.estado==="cerrado").reduce((a,l)=>a+budN(l.presupuesto),0);
+  document.getElementById("mPipe").textContent=fmt(pipe);
+  document.getElementById("mClosed").textContent=fmt(closed);
+}
+function card(l){
+  const sell=l.vendedoras?l.vendedoras.nombre:"Sin asignar";
+  const nombre=((l.nombre||"")+" "+(l.apellido||"")).trim()||"(sin nombre)";
+  const opts=STAGES.map(s=>`<option value="${s.k}" ${s.k===l.estado?"selected":""}>${s.n}</option>`).join("");
+  return `<div class="card">
+    <div class="r1"><span class="ini" style="background:${colorFor(sell)}">${ini(nombre)}</span>
+      <span class="nm">${nombre}</span><span class="money">${l.presupuesto||"—"}</span></div>
+    <div class="r2">${l.angulo?`<span class="tag">${l.angulo}</span>`:""}<span class="proj">📍 ${l.proyecto_interes||"—"}</span></div>
+    <div class="foot"><span class="sell"><span class="av">${ini(sell)}</span>${sell}</span>
+      <select onchange="cambiar('${l.id}',this.value)">${opts}</select></div>
+  </div>`;
+}
+async function cambiar(id,estado){
+  await fetch("/api/leads",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({id,estado})});
+  cargar();
+}
+async function simular(){
+  const nombres=[["Fernando","Quintero"],["Patricia","Núñez"],["Gustavo","Mora"],["Isabel","Rivas"]];
+  const proys=["Aquavista","Coral Park","Ocean Two","Napa Village","Terrazas Villas"];
+  const angs=["Retiro / vida","Inversión / futuro","Familia / laguna","Vacacional"];
+  const buds=["$195k–$300k","$300k–$500k","+$500k","$120k–$195k"];
+  const p=nombres[Math.floor(Math.random()*nombres.length)];
+  const body={nombre:p[0],apellido:p[1],email:p[0].toLowerCase()+"@lead.com",telefono:"+507",
+    presupuesto:buds[Math.floor(Math.random()*buds.length)],plazo:"6–12 meses",
+    proyecto_interes:proys[Math.floor(Math.random()*proys.length)],angulo:angs[Math.floor(Math.random()*angs.length)],origen:"sim"};
+  const r=await(await fetch("/api/leads",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})).json();
+  toast(`⚡ Lead nuevo — ${body.nombre} ${body.apellido}`,`Asignado auto a ${r.vendedora?.nombre} · guardado en Supabase ✓`);
+  cargar();
+}
+function toast(t,s){const e=document.createElement("div");e.className="toast";e.innerHTML=`<b>${t}</b>${s}`;document.body.appendChild(e);setTimeout(()=>e.remove(),4200);}
+function budN(b){if(!b)return 0;const m=b.match(/(\d+)k/g);if(!m)return 0;const n=m.map(x=>parseInt(x));return (n[n.length-1]||0)*1000;}
+function fmt(v){return v>=1e6?"$"+(v/1e6).toFixed(1)+"M":"$"+Math.round(v/1000)+"K";}
+document.getElementById("pin").addEventListener("keydown",e=>{if(e.key==="Enter")entrar();});
+</script>
+</body>
+</html>

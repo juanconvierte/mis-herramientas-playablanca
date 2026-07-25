@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Propuesta — Ecosistema Playa Blanca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0e1630; --navy2:#16204a; --ink:#141b2d; --mut:#5b6478; --line:#e7e9f0;
+  --indigo:#6d5ef0; --indigo2:#8b6cff; --teal:#12b3a6; --teal-soft:#e5f8f5;
+  --gold:#c99a45; --bg:#f6f7fb; --card:#fff; --red:#e5484d; --green:#12a150;
+  --shadow:0 1px 3px rgba(16,22,48,.05),0 10px 30px rgba(16,22,48,.06);
+  --shadow-lg:0 20px 50px rgba(16,22,48,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+section{padding:56px 0}
+h2{font-size:1.9rem;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+h2 .accent{color:var(--indigo)}
+.lead{color:var(--mut);font-size:1.05rem;max-width:640px}
+.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:64px 0 72px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(109,94,240,.5),transparent 70%)}
+.hero .wrap{position:relative;z-index:2}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:40px}
+.brand .logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--indigo),var(--indigo2));display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:1.1rem;box-shadow:0 6px 16px rgba(109,94,240,.5)}
+.brand b{font-size:1.05rem;font-weight:800}.brand span{opacity:.7;font-size:.82rem;display:block;font-weight:500}
+.hero h1{font-size:2.9rem;font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:18px;max-width:760px}
+.hero h1 .hl{background:linear-gradient(120deg,#8b6cff,#12b3a6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.15rem;opacity:.82;max-width:600px;margin-bottom:8px}
+.hero .for{margin-top:28px;font-size:.9rem;opacity:.6}
+/* PROBLEM */
+.prob{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow)}
+.pcard .big{font-size:2.4rem;font-weight:900;letter-spacing:-.02em;line-height:1}
+.pcard.bad .big{color:var(--red)}
+.pcard .lbl{color:var(--mut);font-size:.92rem;margin-top:8px}
+.pcard .sub{font-size:.82rem;color:var(--mut);margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+/* DATA STRIP */
+.strip{background:var(--navy);color:#fff;border-radius:20px;padding:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center;box-shadow:var(--shadow-lg)}
+.strip .n{font-size:2.6rem;font-weight:900;letter-spacing:-.02em;line-height:1;background:linear-gradient(120deg,#8b6cff,#12b3a6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.strip .l{opacity:.8;font-size:.9rem;margin-top:8px}
+.strip .divider{position:relative}
+@media(max-width:640px){.strip{grid-template-columns:1fr;gap:20px}.prob{grid-template-columns:1fr}}
+/* SERVICES */
+.grid9{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow);transition:.2s}
+.svc:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--indigo)}
+.svc .ico{width:44px;height:44px;border-radius:12px;background:var(--teal-soft);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:14px}
+.svc h3{font-size:1rem;font-weight:800;margin-bottom:5px}
+.svc p{font-size:.85rem;color:var(--mut);line-height:1.45}
+.svc .new{display:inline-block;margin-top:10px;font-size:.68rem;font-weight:800;color:var(--indigo);background:#efeefe;padding:3px 9px;border-radius:20px}
+@media(max-width:760px){.grid9{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.grid9{grid-template-columns:1fr}}
+/* COMPARE */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);margin-top:30px;border:1px solid var(--line)}
+.cmp .side{padding:32px 28px;background:var(--card)}
+.cmp .side.hs{background:#fbfbfd}
+.cmp .side.pb{background:linear-gradient(135deg,#f4f2ff,#eafaf8);border-left:2px solid var(--indigo)}
+.cmp .side .top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.cmp .side h3{font-size:1.15rem;font-weight:800}
+.cmp .side .price{font-size:2rem;font-weight:900;letter-spacing:-.02em}
+.cmp .hs .price{color:var(--red)}.cmp .pb .price{color:var(--green)}
+.cmp .side .price small{font-size:.8rem;font-weight:600;color:var(--mut)}
+.cmp .side .tagline{font-size:.82rem;color:var(--mut);margin-bottom:18px}
+.cmp ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.cmp li{font-size:.88rem;display:flex;gap:10px;align-items:flex-start}
+.cmp li .ck{flex:0 0 auto;font-weight:900;font-size:.95rem}
+.cmp .hs li .ck{color:var(--red)}.cmp .pb li .ck{color:var(--green)}
+@media(max-width:640px){.cmp{grid-template-columns:1fr}}
+/* PRICE */
+.price-box{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:22px;padding:40px;text-align:center;box-shadow:var(--shadow-lg);margin-top:14px}
+.price-box .rows{display:inline-flex;flex-direction:column;gap:8px;text-align:left;margin:0 auto 22px;font-size:1rem}
+.price-box .rows .r{display:flex;justify-content:space-between;gap:40px;opacity:.9;border-bottom:1px dashed rgba(255,255,255,.18);padding-bottom:8px}
+.price-box .rows .r b{font-weight:700}
+.price-box .total{font-size:3.2rem;font-weight:900;letter-spacing:-.03em;line-height:1;background:linear-gradient(120deg,#8b6cff,#12b3a6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.price-box .totlbl{opacity:.7;font-size:.9rem;margin-top:6px}
+.price-box .anchor{margin-top:22px;font-size:.92rem;opacity:.85;max-width:520px;margin-left:auto;margin-right:auto;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:14px 18px}
+.price-box .anchor b{color:#12e0cc}
+/* TRUST */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;text-align:center;box-shadow:var(--shadow)}
+.tcard .i{font-size:1.5rem}
+.tcard b{display:block;font-size:.9rem;margin-top:8px;font-weight:800}
+.tcard span{font-size:.76rem;color:var(--mut)}
+@media(max-width:640px){.trust{grid-template-columns:1fr 1fr}}
+/* CLOSE */
+.close{background:linear-gradient(135deg,var(--indigo),var(--teal));color:#fff;border-radius:22px;padding:44px;text-align:center;box-shadow:var(--shadow-lg)}
+.close h2{color:#fff;font-size:2rem}
+.close p{opacity:.92;max-width:520px;margin:10px auto 0}
+.foot{text-align:center;color:var(--mut);font-size:.82rem;padding:34px 0 50px}
+.foot b{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo">PB</div>
+      <div><b>Playa Blanca × Convierte</b><span>Propuesta de ecosistema · 2026</span></div>
+    </div>
+    <h1>Deja de pagar por un CRM que usas al <span class="hl">5%</span>. Toma el control de todo tu embudo.</h1>
+    <p>No es una agencia de anuncios. Es un ecosistema completo — anuncios, creativos, landing, CRM propio y automatización con IA — bajo un solo control.</p>
+    <div class="for">Preparado para: <b>Ralph &amp; Dyana</b> — Playa Blanca Residences</div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Dónde estás hoy</div>
+    <h2>Pagas <span class="accent">$1.300 al mes</span> — y sigues a ciegas</h2>
+    <p class="lead">Un CRM carísimo que tu equipo apenas usa, sin automatización, y sin ver de verdad qué pasa con cada lead.</p>
+    <div class="prob">
+      <div class="pcard bad">
+        <div class="big">$900</div>
+        <div class="lbl">al mes en HubSpot</div>
+        <div class="sub">~70 módulos disponibles. Tu equipo usa ~8. Estás pagando por 62 funciones que nadie toca.</div>
+      </div>
+      <div class="pcard bad">
+        <div class="big">0</div>
+        <div class="lbl">automatizaciones activas</div>
+        <div class="sub">Los leads se asignan a mano. Sin follow-up automático. Sin avisos. Leads que se enfrían y se pierden.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA STRIP -->
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="strip">
+      <div><div class="n">70 → 8</div><div class="l">módulos de HubSpot que realmente usan</div></div>
+      <div class="divider"><div class="n">$900</div><div class="l">al mes que hoy se lleva HubSpot</div></div>
+      <div><div class="n">100%</div><div class="l">de tu embudo, bajo un solo control</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Lo que recibes</div>
+    <h2>Un <span class="accent">ecosistema</span>, no un servicio suelto</h2>
+    <p class="lead">Nueve piezas trabajando juntas para que cada lead sea dinero medido, no una hoja de cálculo olvidada.</p>
+    <div class="grid9">
+      <div class="svc"><div class="ico">🎯</div><h3>Campañas de calidad</h3><p>Meta Ads optimizado a compradores con presupuesto real, no clics baratos.</p></div>
+      <div class="svc"><div class="ico">🎨</div><h3>Motor de creativos IA</h3><p>Imágenes y anuncios producidos con IA, sin depender de diseñador externo.</p></div>
+      <div class="svc"><div class="ico">👥</div><h3>Públicos + guiones</h3><p>Segmentación y mensajes por ángulo (retiro, inversión, familia).</p></div>
+      <div class="svc"><div class="ico">🌐</div><h3>Landing + optimización</h3><p>Web que convierte, mejorada mes a mes.</p></div>
+      <div class="svc"><div class="ico">📊</div><h3>Panel del dueño</h3><p>Ves cada conversión y cada peso en vivo. Nunca a ciegas.</p></div>
+      <div class="svc"><div class="ico">🤖</div><h3>CRM propio</h3><p>Reemplaza HubSpot. A tu medida, simple para las asesoras.<span class="new">Reemplaza HubSpot</span></p></div>
+      <div class="svc"><div class="ico">📧</div><h3>Correos automáticos</h3><p>Follow-up solo a los leads fríos. Ningún lead olvidado.</p></div>
+      <div class="svc"><div class="ico">📱</div><h3>Avisos a vendedoras</h3><p>Lead nuevo → aviso instantáneo por Telegram con toda su info.</p></div>
+      <div class="svc"><div class="ico">🧠</div><h3>Agente de soporte IA</h3><p>Cuando algo falla, analiza Meta + CRM y explica qué hacer.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="eyebrow">Cara a cara</div>
+    <h2>HubSpot vs. tu CRM propio</h2>
+    <div class="cmp">
+      <div class="side hs">
+        <div class="top"><h3>HubSpot</h3><div class="price">$900<small>/mes</small></div></div>
+        <div class="tagline">Genérico, caro, subutilizado</div>
+        <ul>
+          <li><span class="ck">✕</span> ~70 módulos, usan 8</li>
+          <li><span class="ck">✕</span> Sin auto-asignación</li>
+          <li><span class="ck">✕</span> Sin follow-up automático</li>
+          <li><span class="ck">✕</span> Enredado para las asesoras</li>
+          <li><span class="ck">✕</span> No es tuyo</li>
+        </ul>
+      </div>
+      <div class="side pb">
+        <div class="top"><h3>CRM Playa Blanca</h3><div class="price">$500<small>/mes</small></div></div>
+        <div class="tagline">A tu medida, simple, tuyo</div>
+        <ul>
+          <li><span class="ck">✓</span> Solo lo que usan, sin bloat</li>
+          <li><span class="ck">✓</span> Asigna leads solo</li>
+          <li><span class="ck">✓</span> Correos + Telegram automáticos</li>
+          <li><span class="ck">✓</span> Una pantalla, cero curva</li>
+          <li><span class="ck">✓</span> Se adapta el mismo día</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="eyebrow">Inversión</div>
+    <h2>Todo el ecosistema por <span class="accent">$1.400/mes</span></h2>
+    <div class="price-box">
+      <div class="rows">
+        <div class="r"><span>Gestión del ecosistema (ads, creativos, landing, IA, soporte)</span> <b>$900</b></div>
+        <div class="r"><span>CRM propio Playa Blanca (suscripción)</span> <b>$500</b></div>
+      </div>
+      <div class="total">$1.400<small style="font-size:1rem;font-weight:600">/mes</small></div>
+      <div class="totlbl">todo integrado, automatizado y bajo tu control</div>
+      <div class="anchor">Hoy pagas <b>$1.300</b> ($400 gestión + $900 HubSpot) y estás a ciegas. Por casi lo mismo, te lo modernizas todo — y apagas HubSpot.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Confiable</div>
+    <h2>Tu data, segura — sin pagar precio enterprise</h2>
+    <p class="lead">Construido sobre la misma infraestructura de nube (AWS) que usan las grandes plataformas. Seguridad real, a escala de tu negocio.</p>
+    <div class="trust">
+      <div class="tcard"><div class="i">💾</div><b>Respaldos automáticos</b><span>Tu data nunca se pierde</span></div>
+      <div class="tcard"><div class="i">🔒</div><b>Cifrado + HTTPS</b><span>En reposo y en tránsito</span></div>
+      <div class="tcard"><div class="i">👤</div><b>Cada quien ve lo suyo</b><span>Aislamiento por asesora</span></div>
+      <div class="tcard"><div class="i">⚡</div><b>99.9% disponible</b><span>Monitoreo con alertas</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="close">
+      <h2>Un solo aliado. Todo tu embudo.</h2>
+      <p>Ya manejo tus anuncios. Con este paso, controlo el ecosistema completo — y tú dejas de perder leads, dinero y tiempo en herramientas que no te sirven.</p>
+    </div>
+    <div class="foot">
+      Propuesta preparada por <b>Juan — Convierte</b> · Playa Blanca Residences · 2026<br>
+      Los precios y funciones son parte de esta propuesta comercial.
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

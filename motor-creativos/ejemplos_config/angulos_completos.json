@@ -1,0 +1,64 @@
+{
+  "_comentario": "Configuraciones de ejemplo de los mejores anuncios. Cada objeto es un anuncio. Pasa estos a gen4.py.",
+  "_campos": {
+    "img": "nombre del archivo de foto",
+    "fx/fy": "punto focal 0.0-1.0 (fy bajo = parte alta de la foto)",
+    "logo": "true/false mostrar logo",
+    "kicker": "eyebrow en mayusculas",
+    "h1": "titular principal",
+    "sub": "array de lineas de subtitulo",
+    "price_text": "precio formateado",
+    "trust": "linea de confianza",
+    "cta": "texto del boton",
+    "cta_style": "white/outline/solid",
+    "badge": "texto del badge rojo (opcional)",
+    "block_shift": "ajuste vertical del bloque (~150)"
+  },
+  "anuncios": [
+    {
+      "out": "legado.png", "img": "familia_playa.jpg", "fx": 0.5, "fy": 0.30,
+      "logo": true, "cta_style": "white", "block_shift": 150,
+      "kicker": "TU LEGADO FRENTE AL MAR",
+      "h1": "Lo que les dejes, los unirá siempre.",
+      "sub": ["Residencias frente al Pacífico, en la", "Riviera Pacífica. A 1.5h de la capital."],
+      "trust": "23 AÑOS · 3,500+ FAMILIAS", "price_text": "$193,912 USD",
+      "cta": "Asegura el tuyo"
+    },
+    {
+      "out": "renta_pasiva.png", "img": "torre_atardecer.png", "fx": 0.5, "fy": 0.30,
+      "logo": true, "cta_style": "white", "block_shift": 150, "badge": "RENTA EN USD",
+      "kicker": "INGRESO PASIVO EN DÓLARES",
+      "h1": "Tu segunda casa que se paga sola.",
+      "sub": ["El desarrollo gestiona el alquiler", "vacacional. Tú no haces nada."],
+      "trust": "1,500+ UNIDADES ENTREGADAS", "price_text": "$202,910 USD",
+      "cta": "Conoce los planes"
+    },
+    {
+      "out": "vs_competencia.png", "img": "laguna_aerea.jpg", "fx": 0.5, "fy": 0.40,
+      "logo": true, "cta_style": "white", "block_shift": 150, "badge": "ÚNICA EN LA REGIÓN",
+      "kicker": "SOLO AQUÍ, AGUA SALADA",
+      "h1": "La laguna que Buenaventura nunca tendrá.",
+      "sub": ["La laguna de agua salada más grande de", "Centroamérica y el Caribe. Cristalina y navegable."],
+      "trust": "90 HECTÁREAS · 1.5 KM DE PLAYA", "price_text": "$256,100 USD",
+      "cta": "Compara y elige"
+    },
+    {
+      "out": "ya_construido.png", "img": "villas_aerea.png", "fx": 0.5, "fy": 0.35,
+      "logo": false, "cta_style": "white", "block_shift": 150, "badge": "YA CONSTRUIDO",
+      "kicker": "1,500+ UNIDADES ENTREGADAS",
+      "h1": "No compres planos. Compra una realidad.",
+      "sub": ["Camina hoy por lo que será tuyo.", "Frente al Pacífico, en Panamá."],
+      "trust": "PAGOS PROTEGIDOS EN FIDEICOMISO", "price_text": "$193,912 USD",
+      "cta": "Agenda tu visita"
+    },
+    {
+      "out": "seguridad.png", "img": "torre_atardecer.png", "fx": 0.5, "fy": 0.24,
+      "logo": true, "cta_style": "white", "block_shift": 150, "badge": "TU DINERO, SEGURO",
+      "kicker": "SEGURIDAD JURÍDICA",
+      "h1": "Tu inversión protegida en fideicomiso.",
+      "sub": ["Título de pleno dominio a tu nombre, pagos", "en escrow. Panamá, economía en dólares."],
+      "trust": "23 AÑOS DE RESPALDO", "price_text": "$193,912 USD",
+      "cta": "Invierte tranquilo"
+    }
+  ]
+}

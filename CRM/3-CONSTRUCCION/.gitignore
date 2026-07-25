@@ -1,0 +1,13 @@
+# Secretos — NUNCA a Git
+.env
+.env.local
+*.key
+
+# Dependencias
+node_modules/
+
+# Vercel
+.vercel
+
+# Sistema
+.DS_Store

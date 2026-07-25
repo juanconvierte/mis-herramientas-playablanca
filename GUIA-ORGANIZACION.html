@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guía de tus carpetas · Playa Blanca</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#0f1420;color:#e7ecf3;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.5;padding:24px 16px 60px}
+  .wrap{max-width:900px;margin:0 auto}
+  h1{font-size:26px;margin:0 0 4px}
+  .sub{color:#93a0b2;font-size:14px;margin:0 0 24px}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+  .legend span{font-size:12px;padding:5px 10px;border-radius:999px;font-weight:600}
+  .cat{border-radius:16px;padding:18px 18px 6px;margin:0 0 18px;border:1px solid #26304a}
+  .cat h2{font-size:18px;margin:0 0 3px;display:flex;align-items:center;gap:9px}
+  .cat .desc{font-size:13.5px;color:#b7c0cf;margin:0 0 14px}
+  .row{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid #1e2740}
+  .row:first-of-type{border-top:0}
+  .ico{flex:none;font-size:20px;width:26px;text-align:center}
+  .body{flex:1;min-width:0}
+  .name{font-family:ui-monospace,monospace;font-size:13.5px;font-weight:700;color:#fff}
+  .name .sz{font-family:system-ui;font-weight:500;color:#7c899c;font-size:12px;margin-left:8px}
+  .what{font-size:13px;color:#c4ccd8;margin:2px 0 0}
+  .do{font-size:12.5px;margin:5px 0 0;font-weight:600}
+  /* colores */
+  .cliente{background:#0e2117;border-color:#1f5a3a}.cliente h2{color:#4ade80}
+  .privado{background:#101c2e;border-color:#28527e}.privado h2{color:#5ab0ff}
+  .secreto{background:#241016;border-color:#7a2a34}.secreto h2{color:#ff6b81}
+  .pii{background:#241f0e;border-color:#7a621f}.pii h2{color:#f5c451}
+  .basura{background:#171a20;border-color:#3a4152}.basura h2{color:#9aa7ba}
+  .g{color:#4ade80}.b{color:#5ab0ff}.r{color:#ff6b81}.y{color:#f5c451}.gray{color:#9aa7ba}
+  .note{background:#101826;border:1px solid #26304a;border-radius:12px;padding:14px 16px;font-size:13px;color:#b7c0cf;margin-top:8px}
+  .note b{color:#e7ecf3}
+</style></head>
+<body><div class="wrap">
+
+<h1>🗂️ Guía de tus carpetas</h1>
+<p class="sub">Todo tu proyecto <b>Playa Blanca</b>, ordenado por color. Sin tecnicismos.</p>
+
+<div class="legend">
+  <span style="background:#0e2117;color:#4ade80">🟢 Del cliente</span>
+  <span style="background:#101c2e;color:#5ab0ff">🔵 Privado tuyo</span>
+  <span style="background:#241016;color:#ff6b81">🔴 Secretos</span>
+  <span style="background:#241f0e;color:#f5c451">🟡 Datos de clientes</span>
+  <span style="background:#171a20;color:#9aa7ba">⚪ Basura / revisar</span>
+</div>
+
+<!-- CLIENTE -->
+<div class="cat cliente">
+  <h2>🟢 DEL CLIENTE — se puede compartir / subir a GitHub</h2>
+  <p class="desc">Son las webs que le hiciste al cliente. Código limpio, sin secretos. Esto es lo que iría a un <b>GitHub PRIVADO</b> (para respaldo y handoff).</p>
+  <div class="row"><div class="ico">🌐</div><div class="body">
+    <div class="name">web-panama-LIVE/ <span class="sz">70 MB</span></div>
+    <div class="what">La web de Panamá + sus paneles (Panel de Juan, CRM) + emails + APIs.</div>
+    <div class="do g">→ GitHub privado · (se saca su .env secreto automáticamente)</div></div></div>
+  <div class="row"><div class="ico">🌐</div><div class="body">
+    <div class="name">landing-colombia-full/ <span class="sz">17 MB</span></div>
+    <div class="what">La web de Colombia.</div>
+    <div class="do g">→ GitHub privado · (se saca su .env secreto)</div></div></div>
+  <div class="row"><div class="ico">✉️</div><div class="body">
+    <div class="name">emails/ <span class="sz">4 KB</span></div>
+    <div class="what">Plantillas de correos (raíz).</div>
+    <div class="do g">→ GitHub privado</div></div></div>
+  <div class="row"><div class="ico">📄</div><div class="body">
+    <div class="name">docs/*.md <span class="sz">(solo los .md)</span></div>
+    <div class="what">Documentación y reportes en texto.</div>
+    <div class="do g">→ GitHub privado (los Excel de aquí NO, ver amarillo)</div></div></div>
+</div>
+
+<!-- PRIVADO -->
+<div class="cat privado">
+  <h2>🔵 PRIVADO TUYO — tus herramientas, a la nube (NO del cliente)</h2>
+  <p class="desc">Cosas que son <b>tuyas</b>, tu activo/negocio. No se las das al cliente. Van a una <b>nube privada</b> (Google Drive/Dropbox), no a GitHub por pesadas.</p>
+  <div class="row"><div class="ico">🎨</div><div class="body">
+    <div class="name">motor-creativos/ <span class="sz">539 MB</span></div>
+    <div class="what">Tu motor de imágenes (Python). Herramienta tuya.</div>
+    <div class="do b">→ Nube privada (muy pesado)</div></div></div>
+  <div class="row"><div class="ico">🎨</div><div class="body">
+    <div class="name">plataforma-creativos/ <span class="sz">3.8 MB</span></div>
+    <div class="what">Versión web del motor de imágenes.</div>
+    <div class="do b">→ Nube privada</div></div></div>
+  <div class="row"><div class="ico">🛠️</div><div class="body">
+    <div class="name">CRM/ <span class="sz">176 KB</span></div>
+    <div class="what">Tu CRM propio futuro (producto tuyo, 3 fases). ⚠️ tiene un .env dentro.</div>
+    <div class="do b">→ Nube privada (el .env va a caja fuerte)</div></div></div>
+  <div class="row"><div class="ico">🤖</div><div class="body">
+    <div class="name">asistente/ <span class="sz">244 KB</span></div>
+    <div class="what">Tu bot de Telegram (código). ⚠️ADENTRO tiene claves y datos de leads.</div>
+    <div class="do b">→ Nube privada · (config.json y leads_db.json salen aparte)</div></div></div>
+  <div class="row"><div class="ico">🖼️</div><div class="body">
+    <div class="name">fotos/ <span class="sz">534 MB</span></div>
+    <div class="what">Biblioteca de fotos y renders del proyecto.</div>
+    <div class="do b">→ Nube privada (muy pesado para GitHub)</div></div></div>
+  <div class="row"><div class="ico">📝</div><div class="body">
+    <div class="name">CLAUDE.md · ESTRUCTURA-PROYECTO.md · README.md · MAPA-AGENTE-WHATSAPP.html</div>
+    <div class="what">Tus notas internas de trabajo (tienen IDs del proyecto).</div>
+    <div class="do b">→ GitHub privado o nube (solo tú)</div></div></div>
+</div>
+
+<!-- SECRETOS -->
+<div class="cat secreto">
+  <h2>🔴 SECRETOS — caja fuerte, NUNCA a ningún lado público</h2>
+  <p class="desc">Estas son las <b>llaves del reino</b>: tokens de Meta, HubSpot, CAPI, contraseñas. Si se filtran, te roban las cuentas y los datos. Guárdalas en un <b>gestor de contraseñas</b> (1Password, Bitwarden). JAMÁS GitHub, jamás nube compartida.</p>
+  <div class="row"><div class="ico">🔑</div><div class="body">
+    <div class="name">.env <span class="sz">(raíz)</span> · CRM/3-CONSTRUCCION/.env · _ARCHIVO/.../.env.capi-colombia</div>
+    <div class="what">Tokens Meta / HubSpot / CAPI / Clarity / DASH_KEY.</div>
+    <div class="do r">→ Caja fuerte (gestor de contraseñas)</div></div></div>
+  <div class="row"><div class="ico">🔑</div><div class="body">
+    <div class="name">asistente/config.json</div>
+    <div class="what">Token de Meta del bot.</div>
+    <div class="do r">→ Caja fuerte</div></div></div>
+</div>
+
+<!-- PII -->
+<div class="cat pii">
+  <h2>🟡 DATOS DE CLIENTES (PII) — proteger, NUNCA a GitHub</h2>
+  <p class="desc">Nombres, teléfonos, emails y presupuestos de <b>personas reales</b>. Legalmente sensible. Solo nube privada, nunca GitHub ni nada público.</p>
+  <div class="row"><div class="ico">👤</div><div class="body">
+    <div class="name">exports/ <span class="sz">268 KB</span></div>
+    <div class="what">Excel/CSV de compradores con intención.</div>
+    <div class="do y">→ Nube privada protegida</div></div></div>
+  <div class="row"><div class="ico">👤</div><div class="body">
+    <div class="name">docs/*.xlsx · docs/*.csv</div>
+    <div class="what">Listas de leads (3 semanas, seguimiento, por campaña).</div>
+    <div class="do y">→ Nube privada protegida</div></div></div>
+  <div class="row"><div class="ico">👤</div><div class="body">
+    <div class="name">asistente/leads_db.json</div>
+    <div class="what">Histórico local de leads.</div>
+    <div class="do y">→ Nube privada protegida</div></div></div>
+</div>
+
+<!-- BASURA -->
+<div class="cat basura">
+  <h2>⚪ BASURA / REVISAR — candidatos a borrar (con tu OK)</h2>
+  <p class="desc">Cosas viejas o pesadas que ya no se usan. Ocupan espacio. Borrar solo con tu permiso, y con respaldo antes.</p>
+  <div class="row"><div class="ico">🗑️</div><div class="body">
+    <div class="name">Playa Blanca/ <span class="sz">1.2 MB</span></div>
+    <div class="what">Carpeta vieja residual (logs muertos del asistente).</div>
+    <div class="do gray">→ Revisar y borrar</div></div></div>
+  <div class="row"><div class="ico">📦</div><div class="body">
+    <div class="name">_ARCHIVO/ <span class="sz">407 MB</span></div>
+    <div class="what">Backups viejos (algunos útiles). Muy pesado. Tiene un .env viejo dentro.</div>
+    <div class="do gray">→ Depurar → lo útil a nube, el resto borrar</div></div></div>
+  <div class="row"><div class="ico">❓</div><div class="body">
+    <div class="name">"ORDEN CLX | XIO/" <span class="sz">24 KB</span></div>
+    <div class="what">No sé qué es (nombre raro). Hay que abrirla y ver.</div>
+    <div class="do gray">→ Revisar juntos</div></div></div>
+</div>
+
+<div class="note">
+  <b>Regla simple para recordar:</b><br>
+  🟢 verde = del cliente → GitHub privado &nbsp;·&nbsp; 🔵 azul = tuyo → nube &nbsp;·&nbsp;
+  🔴 rojo = claves → caja fuerte &nbsp;·&nbsp; 🟡 amarillo = datos de gente → nube protegida &nbsp;·&nbsp; ⚪ gris = basura → borrar con OK<br><br>
+  <b>Nota:</b> las 2 webs (verde) NO las muevo de carpeta — están amarradas a Vercel por su nombre. Se respaldan tal cual, sin moverlas.
+</div>
+
+</div></body></html>

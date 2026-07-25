@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapa del Agente de WhatsApp · Playa Blanca</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+<style>
+:root{
+  --navy:#1B2F4B; --navy2:#12233A; --gold:#B8933F; --gold-soft:#D9C398;
+  --bg:#0C1A2A; --panel:#12243A; --panel2:#16283B; --line:#22374E;
+  --ink:#E7EEF5; --ink2:#9FB2C6; --ink3:#6B7F95;
+  --green:#2FBF71; --green-bg:#0F2E22; --red:#E5555F; --red-bg:#331519;
+  --amber:#E0A03A; --amber-bg:#2E2413; --gray:#5B6E84; --gray-bg:#17222f;
+  --blue:#5A82BC;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.45}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 18px 120px}
+h1{font-size:24px;font-weight:800;letter-spacing:-.01em}
+.sub{color:var(--ink2);font-size:14px;margin-top:5px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin:18px 0 6px;font-size:12.5px;color:var(--ink2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.dot.g{background:var(--green)} .dot.r{background:var(--red)} .dot.a{background:var(--amber)} .dot.y{background:var(--gray)}
+
+.banner{background:var(--red-bg);border:1px solid var(--red);border-radius:14px;padding:14px 16px;margin:16px 0 8px;font-size:13.5px}
+.banner b{color:var(--red)}
+
+.lane{margin-top:26px}
+.lanehead{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.lanehead .n{width:26px;height:26px;border-radius:8px;background:var(--gold);color:#1a1204;font-weight:800;display:grid;place-items:center;font-size:13px;flex:none}
+.lanehead h2{font-size:15px;font-weight:700;letter-spacing:.01em}
+.lanehead .tag{font-size:11px;color:var(--ink3);background:var(--panel2);border:1px solid var(--line);padding:3px 8px;border-radius:20px}
+
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
+.node{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--gray);border-radius:12px;padding:13px 15px;cursor:pointer;transition:.15s;flex:1 1 240px;min-width:220px;position:relative}
+.node:hover{transform:translateY(-2px);border-color:var(--blue);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.node.g{border-left-color:var(--green)} .node.r{border-left-color:var(--red)} .node.a{border-left-color:var(--amber)} .node.y{border-left-color:var(--gray)}
+.node .ic{font-size:20px}
+.node .t{font-weight:700;font-size:13.5px;margin-top:6px}
+.node .d{color:var(--ink2);font-size:12px;margin-top:4px}
+.node .st{position:absolute;top:11px;right:12px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px}
+.node.g .st{color:var(--green);background:var(--green-bg)} .node.r .st{color:var(--red);background:var(--red-bg)}
+.node.a .st{color:var(--amber);background:var(--amber-bg)} .node.y .st{color:var(--ink2);background:var(--gray-bg)}
+.node .more{font-size:11px;color:var(--blue);margin-top:8px;font-weight:600}
+
+.arrow{text-align:center;color:var(--ink3);font-size:20px;margin:2px 0;line-height:1}
+.split{display:flex;gap:10px;flex-wrap:wrap}
+.filter{background:var(--panel2);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;flex:1 1 200px;min-width:190px;cursor:pointer;transition:.15s}
+.filter:hover{border-color:var(--blue);border-style:solid}
+.filter .t{font-weight:700;font-size:12.5px;display:flex;align-items:center;gap:6px}
+.filter .d{color:var(--ink2);font-size:11.5px;margin-top:3px}
+
+/* drawer */
+.drawer{position:fixed;inset:0;background:rgba(4,10,18,.6);display:none;align-items:flex-end;justify-content:center;z-index:50;backdrop-filter:blur(2px)}
+.drawer.on{display:flex}
+.drawer .box{background:var(--panel);border:1px solid var(--line);border-radius:18px 18px 0 0;width:min(680px,100%);max-height:82vh;overflow:auto;padding:22px 22px 30px;animation:up .2s ease}
+@keyframes up{from{transform:translateY(30px);opacity:.5}to{transform:translateY(0);opacity:1}}
+@media(min-width:700px){.drawer{align-items:center}.drawer .box{border-radius:18px}}
+.drawer .x{float:right;background:var(--panel2);border:1px solid var(--line);color:var(--ink2);width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:16px}
+.drawer h3{font-size:18px;font-weight:800;display:flex;align-items:center;gap:9px}
+.drawer .badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;margin-left:4px}
+.drawer .sec{margin-top:16px}
+.drawer .sec .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--gold-soft);font-weight:700;margin-bottom:5px}
+.drawer .sec p{font-size:14px;color:var(--ink);line-height:1.55}
+.drawer .rule{background:var(--navy2);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:13px;color:var(--ink2);margin-top:4px}
+.drawer code{background:var(--navy2);border:1px solid var(--line);padding:1px 6px;border-radius:6px;font-size:12px;color:var(--gold-soft);font-family:ui-monospace,monospace}
+.drawer .file{font-size:11.5px;color:var(--ink3);margin-top:14px;font-family:ui-monospace,monospace}
+.foot{margin-top:40px;text-align:center;color:var(--ink3);font-size:11.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🗺️ Mapa del Agente de WhatsApp</h1>
+  <div class="sub">Playa Blanca Residences · cómo un lead se convierte en aviso al grupo. <b>Toca cualquier caja</b> para ver qué hace y la regla exacta.</div>
+
+  <div class="legend">
+    <span><i class="dot g"></i> funcionando</span>
+    <span><i class="dot r"></i> roto ahora</span>
+    <span><i class="dot a"></i> condicional / espera</span>
+    <span><i class="dot y"></i> paso interno</span>
+  </div>
+
+  <div class="banner">⚠️ <b>Estado hoy:</b> el gatillo que manda al GRUPO (cron-job.org, cada 2 min) está <b>caído</b>. Por eso el aviso va atrasado (viste #05 pero ya hay 7). Los leads NO se pierden — están en HubSpot; falta el aviso. La solución está en la caja roja 👇.</div>
+
+  <!-- 1 ENTRADA -->
+  <div class="lane">
+    <div class="lanehead"><div class="n">1</div><h2>Entra un lead</h2><span class="tag">origen</span></div>
+    <div class="row">
+      <div class="node g" data-k="web"><div class="ic">🌐</div><span class="st">vivo</span><div class="t">Formulario WEB (landing)</div><div class="d">Panamá / Colombia. Deja nombre, tel, presupuesto…</div><div class="more">ver detalle →</div></div>
+      <div class="node g" data-k="instant"><div class="ic">📋</div><span class="st">vivo</span><div class="t">Formulario instantáneo Meta</div><div class="d">El que se llena dentro de Facebook/Instagram.</div><div class="more">ver detalle →</div></div>
+    </div>
+    <div class="arrow">↓ los dos caen en <b style="color:var(--ink)">HubSpot</b> (tu CRM) ↓</div>
+  </div>
+
+  <!-- 2 GATILLOS -->
+  <div class="lane">
+    <div class="lanehead"><div class="n">2</div><h2>¿Qué revisa si hay lead nuevo?</h2><span class="tag">gatillos</span></div>
+    <div class="row">
+      <div class="node r" data-k="cronjob"><div class="ic">⏰</div><span class="st">ROTO</span><div class="t">cron-job.org (cada 2 min)</div><div class="d">Dispara el aviso al GRUPO WhatsApp. Externo → frágil.</div><div class="more">ver por qué falla →</div></div>
+      <div class="node g" data-k="vigiacron"><div class="ic">🤖</div><span class="st">vivo</span><div class="t">Cron Vercel (5 veces/día)</div><div class="d">Dispara al vigía de Telegram (Valen).</div><div class="more">ver detalle →</div></div>
+      <div class="node g" data-k="reportecron"><div class="ic">📅</div><span class="st">vivo</span><div class="t">Cron Vercel (8am)</div><div class="d">Dispara el reporte diario al grupo.</div><div class="more">ver detalle →</div></div>
+    </div>
+    <div class="arrow">↓ el de arriba (roto) alimenta el camino del GRUPO ↓</div>
+  </div>
+
+  <!-- 3 VIGIA GRUPO -->
+  <div class="lane">
+    <div class="lanehead"><div class="n">3</div><h2>Vigía del grupo — filtra el lead</h2><span class="tag">api/wa-lead-poll.js</span></div>
+    <div class="split">
+      <div class="filter" data-k="f-dedup"><div class="t">🔁 ¿Ya avisado?</div><div class="d">Si tiene la marca <code>wa_alerta</code> → se salta. Nunca repite.</div></div>
+      <div class="filter" data-k="f-basura"><div class="t">🗑️ ¿Es basura?</div><div class="d">Campaña vacía o "GOOGLE" → NO avisa (no es lead de anuncio).</div></div>
+      <div class="filter" data-k="f-espera"><div class="t">⏳ ¿Falta data?</div><div class="d">Lead &lt;10 min sin presupuesto → espera y reintenta.</div></div>
+    </div>
+    <div class="arrow">↓ si pasa los 3 filtros ↓</div>
+  </div>
+
+  <!-- 4 ARMADO -->
+  <div class="lane">
+    <div class="lanehead"><div class="n">4</div><h2>Arma el mensaje bonito</h2><span class="tag">api/hs-webhook.js</span></div>
+    <div class="row">
+      <div class="node g" data-k="fmtwa"><div class="ic">✍️</div><span class="st">vivo</span><div class="t">Construye la ficha del lead</div><div class="d">#número del día · calidad (💎/🔥/🆕) · presupuesto · plazo · asesor · links wa.me y HubSpot.</div><div class="more">ver qué calcula →</div></div>
+    </div>
+    <div class="arrow">↓</div>
+  </div>
+
+  <!-- 5 SALIDA -->
+  <div class="lane">
+    <div class="lanehead"><div class="n">5</div><h2>Envía</h2><span class="tag">Green API</span></div>
+    <div class="row">
+      <div class="node g" data-k="greenapi"><div class="ic">🟢</div><span class="st">vivo</span><div class="t">Green API → GRUPO WhatsApp</div><div class="d">Manda la ficha al grupo de Ralph + asesores. (Probado hoy: envía OK.)</div><div class="more">ver detalle →</div></div>
+      <div class="node g" data-k="marca"><div class="ic">🔖</div><span class="st">vivo</span><div class="t">Marca "ya avisado"</div><div class="d">Solo si Green API confirma → estampa <code>wa_alerta</code>. Si falla, reintenta.</div><div class="more">ver detalle →</div></div>
+    </div>
+  </div>
+
+  <!-- PARALELO: TELEGRAM -->
+  <div class="lane">
+    <div class="lanehead"><div class="n">A</div><h2>En paralelo — Vigía de Telegram (Valen)</h2><span class="tag">api/vigia.js</span></div>
+    <div class="row">
+      <div class="node g" data-k="vigia"><div class="ic">💬</div><span class="st">vivo</span><div class="t">Avisa a tu Telegram</div><div class="d">+$300k → 🔥 fuerte · resto → 🆕 normal · basura → fuera. (Recién arreglado.)</div><div class="more">ver detalle →</div></div>
+    </div>
+  </div>
+
+  <!-- PARALELO: REPORTES -->
+  <div class="lane">
+    <div class="lanehead"><div class="n">B</div><h2>En paralelo — Reporte diario</h2><span class="tag">api/wa-grupo.js</span></div>
+    <div class="row">
+      <div class="node g" data-k="reporte"><div class="ic">📊</div><span class="st">vivo</span><div class="t">Resumen al grupo (8am)</div><div class="d">Diario siempre · Semanal (domingo) · Mensual (fin de mes). Con Excel adjunto.</div><div class="more">ver detalle →</div></div>
+    </div>
+  </div>
+
+  <div class="foot">Mapa generado del código real · wa-lead-poll · hs-webhook · vigia · wa-grupo · panel</div>
+</div>
+
+<div class="drawer" id="drawer"><div class="box" id="dbox"></div></div>
+
+<script>
+const DATA = {
+  web:{ic:"🌐",t:"Formulario WEB (landing)",st:"g",badge:"funcionando",
+    que:"El formulario de tus páginas (landing Panamá y Colombia). Cuando alguien lo llena, sus datos entran directo a HubSpot con la etiqueta de qué país y qué campaña.",
+    regla:"Guarda <code>origen_formulario</code> = \"Landing Panamá\" o \"Landing Colombia\". Por eso el aviso puede poner el sello 🌐 Página web · País.",
+    file:"landing-*/index.html → /api/crm"},
+  instant:{ic:"📋",t:"Formulario instantáneo de Meta",st:"g",badge:"funcionando",
+    que:"El formulario que se llena SIN salir de Facebook/Instagram. Meta lo pasa a HubSpot por la integración.",
+    regla:"La campaña llega en <code>hs_latest_source_data_2</code>. Ojo: a veces el presupuesto llega unos minutos DESPUÉS (por eso existe el filtro 'esperar data').",
+    file:"Integración Meta ↔ HubSpot"},
+  cronjob:{ic:"⏰",t:"cron-job.org (cada 2 min)",st:"r",badge:"ROTO AHORA",
+    que:"Es un reloj EXTERNO (página aparte, cuenta tuya en cron-job.org) que cada 2 minutos toca la puerta de tu sistema para preguntar '¿hay lead nuevo?'. Ese toque es el que arranca todo el camino hacia el GRUPO de WhatsApp.",
+    regla:"Hoy NO está tocando la puerta → nadie revisa → los leads nuevos (06, 07…) se quedan sin aviso al grupo. NO es el código: el código funciona (lo probamos). Es este reloj externo apagado.",
+    fix:"Arreglo: (1) revivir el job en cron-job.org, o (2) MEJOR: cambiarlo a un disparador que no dependa de una página externa que se cae — webhook instantáneo de HubSpot (avisa en el segundo que entra el lead) o cron nativo de Vercel.",
+    file:"Externo → GET /api/wa-lead-poll?key=…&mins=5"},
+  vigiacron:{ic:"🤖",t:"Cron de Vercel (5 veces/día)",st:"g",badge:"funcionando",
+    que:"Relojes DENTRO de Vercel (no dependen de nadie externo) que corren a las 9am, 11am, 1pm, 3pm y 5pm Panamá. Disparan el vigía de Telegram.",
+    regla:"Nativo de Vercel = confiable, nunca se cae solo. La pega: en el plan gratis solo se pueden horas fijas, no cada 2 min.",
+    file:"vercel.json → /api/vigia (14/16/18/20/22 UTC)"},
+  reportecron:{ic:"📅",t:"Cron de Vercel (8am)",st:"g",badge:"funcionando",
+    que:"Reloj nativo de Vercel que a las 8am Panamá dispara el resumen del día al grupo.",
+    regla:"Un solo disparo diario. Decide solo si además toca semanal (si ayer fue domingo) o mensual (si ayer fue fin de mes).",
+    file:"vercel.json → /api/wa-grupo?auto=1 (13 UTC)"},
+  "f-dedup":{ic:"🔁",t:"Filtro: ¿ya avisado?",st:"y",badge:"paso interno",
+    que:"Antes de avisar, revisa si a ese lead YA le avisó antes. Así nunca te llega el mismo lead dos veces al grupo.",
+    regla:"Busca leads SIN la marca <code>wa_alerta</code>. Cuando avisa, estampa esa marca en HubSpot. La marca sobrevive aunque se reinicie el sistema.",
+    file:"wa-lead-poll.js · filtro wa_alerta NOT_HAS_PROPERTY"},
+  "f-basura":{ic:"🗑️",t:"Filtro: ¿es basura?",st:"y",badge:"paso interno",
+    que:"Descarta contactos que NO son leads de tus anuncios: los que entran por Google u orgánico, o sin campaña. Para no llenar el grupo de ruido.",
+    regla:"Si la campaña viene vacía o dice 'GOOGLE' → lo marca basura y NO avisa. (Esta misma regla la pusimos también en el vigía de Telegram.)",
+    file:"wa-lead-poll.js / vigia.js · check GOOGLE|vacía"},
+  "f-espera":{ic:"⏳",t:"Filtro: ¿falta data?",st:"a",badge:"espera",
+    que:"El dato #1 para Ralph es el PRESUPUESTO. A veces Meta lo llena un ratito después de crear el lead. Este filtro espera a que llegue antes de avisar, para que la ficha salga completa.",
+    regla:"Si el lead tiene menos de 10 min y todavía no tiene presupuesto → espera y reintenta en el próximo ciclo. A los 10 min avisa como esté.",
+    file:"wa-lead-poll.js · edadMin<10 && !tieneRango"},
+  fmtwa:{ic:"✍️",t:"Arma la ficha del lead",st:"g",badge:"funcionando",
+    que:"Toma el lead y construye el mensaje bonito que llega al grupo. Calcula varias cosas automáticamente.",
+    regla:"Calcula: <code>#número</code> del día (orden de llegada, reloj Panamá) · etiqueta de calidad (💎 premium/alto · 🟡 medio · 🔥 compra inmediata · 🆕 nuevo) · presupuesto y plazo (los busca en 5+ nombres de campo distintos) · si es web o form interno · asesor asignado · links de WhatsApp y ficha HubSpot.",
+    file:"hs-webhook.js · función fmtWA()"},
+  greenapi:{ic:"🟢",t:"Green API → GRUPO WhatsApp",st:"g",badge:"funcionando",
+    que:"El servicio que conecta tu número Digitel con WhatsApp y manda el mensaje al grupo de Ralph + asesores.",
+    regla:"Hoy lo probamos: mandó la ficha de Leider a tu propio número y salió (sent:1). El envío funciona. El grupo está en <code>GREENAPI_GROUP</code>. ⚠️ El teléfono Digitel debe estar SIEMPRE encendido con wifi.",
+    file:"hs-webhook.js · función waSend() → Green API"},
+  marca:{ic:"🔖",t:"Marca 'ya avisado'",st:"g",badge:"funcionando",
+    que:"Después de enviar, deja constancia para no repetir.",
+    regla:"SOLO marca si Green API confirmó el envío (devolvió idMessage). Si el envío falló, NO marca → así lo reintenta luego y ningún lead se pierde en silencio.",
+    file:"wa-lead-poll.js · estampa wa_alerta tras éxito"},
+  vigia:{ic:"💬",t:"Vigía de Telegram (Valen)",st:"g",badge:"recién arreglado",
+    que:"Un segundo vigía, independiente, que te avisa a TI por Telegram. Corre en los relojes nativos de Vercel (confiables).",
+    regla:"Hoy lo arreglamos (opción C): antes solo avisaba leads +$300k. Ahora avisa TODOS → +$300k con alarma 🔥, el resto como 🆕 normal, y descarta basura. Dedup propio con la marca <code>vigia_alerta</code>.",
+    file:"api/vigia.js"},
+  reporte:{ic:"📊",t:"Reporte diario al grupo",st:"g",badge:"funcionando",
+    que:"Cada mañana manda al grupo el resumen: cuántos leads, cuáles calientes, presupuestos, contactados, mejor ángulo. Con un Excel adjunto.",
+    regla:"8am Panamá siempre el diario. Si ayer fue domingo, además el semanal. Si ayer fue fin de mes, además el mensual. Todo del día YA cerrado.",
+    file:"api/wa-grupo.js · ?auto=1"},
+};
+const badgeColor={g:"var(--green)",r:"var(--red)",a:"var(--amber)",y:"var(--gray)"};
+const badgeBg={g:"var(--green-bg)",r:"var(--red-bg)",a:"var(--amber-bg)",y:"var(--gray-bg)"};
+const drawer=document.getElementById('drawer'), dbox=document.getElementById('dbox');
+function open(k){
+  const d=DATA[k]; if(!d) return;
+  let h=`<button class="x" onclick="closeD()">✕</button>`;
+  h+=`<h3>${d.ic} ${d.t}<span class="badge" style="color:${badgeColor[d.st]};background:${badgeBg[d.st]}">${d.badge}</span></h3>`;
+  h+=`<div class="sec"><div class="lbl">Qué hace</div><p>${d.que}</p></div>`;
+  h+=`<div class="sec"><div class="lbl">Regla exacta</div><div class="rule">${d.regla}</div></div>`;
+  if(d.fix) h+=`<div class="sec"><div class="lbl">✅ Cómo se arregla</div><div class="rule" style="border-color:var(--green)">${d.fix}</div></div>`;
+  h+=`<div class="file">📄 ${d.file}</div>`;
+  dbox.innerHTML=h; drawer.classList.add('on');
+}
+function closeD(){ drawer.classList.remove('on'); }
+document.querySelectorAll('[data-k]').forEach(el=>el.addEventListener('click',()=>open(el.dataset.k)));
+drawer.addEventListener('click',e=>{ if(e.target===drawer) closeD(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeD(); });
+</script>
+</body>
+</html>

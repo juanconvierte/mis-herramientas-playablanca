@@ -1,0 +1,58 @@
+# ============================================================
+#  .gitignore BLINDADO — Playa Blanca
+#  Regla: NADA de secretos ni PII de clientes entra a git.
+# ============================================================
+
+# ===== SECRETOS (tokens Meta / HubSpot / CAPI / Clarity / DASH_KEY) =====
+.env
+.env.*
+**/.env
+**/.env.*
+*.pem
+*.key
+*.p8
+config.json
+**/config.json
+
+# ===== PII DE CLIENTES (leads / compradores) — JAMÁS subir =====
+leads_db.json
+**/leads_db.json
+_*.json
+**/_*.json
+*.xlsx
+*.csv
+*.xls
+
+# ===== Documentos pesados / entregables binarios =====
+*.pdf
+*.pptx
+*.docx
+*.zip
+
+# ===== Carpetas pesadas (a nube tipo Drive, NO a git) =====
+fotos/
+_ARCHIVO/
+**/salidas/
+**/salidas_reales/
+**/work/
+**/biblioteca_imagenes/
+**/muestras_ia/
+
+# ===== Sitios del cliente (tienen su PROPIO repo, no van en este) =====
+web-panama-LIVE/
+landing-colombia-full/
+
+# ===== Dependencias / build =====
+node_modules/
+**/node_modules/
+.vercel/
+**/.vercel/
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# ===== Sistema / logs =====
+.DS_Store
+**/.DS_Store
+*.log
+**/logs/

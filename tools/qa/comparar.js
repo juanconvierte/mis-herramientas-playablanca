@@ -68,6 +68,7 @@ async function capturar(browser, url, vista, prefijo, esB) {
     }
     window.scrollTo(0, 0);
     await Promise.all([...document.images].map(i => (i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }))));
+    await Promise.all([...document.images].map(i => i.decode().catch(() => null)));  // que estén dibujadas, no solo bajadas
   });
   await page.waitForTimeout(1200);
 

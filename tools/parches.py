@@ -38,6 +38,12 @@ def landing(version_css):
         ('política de privacidad en el pie',
          'se garantizan rendimientos ni retornos de inversión.\n    </p>',
          'se garantizan rendimientos ni retornos de inversión.\n      <a href="/privacidad" style="white-space:nowrap">Política de privacidad</a>.\n    </p>', 1),
+
+        # ---- llamadas fuera (Juan, 27-oct): quien llama no queda en Faro, no se sabe de qué anuncio vino
+        #      y Meta no aprende. Todo va al formulario. La barra del celular queda con un solo botón a lo ancho.
+        ('sin teléfono en el menú (Juan 27-oct: solo formulario)', '      <a class="nav-tel" href="tel:+50767558003">+507 6755-8003</a>\n', '', 1),
+        ('sin teléfono en el pie (Juan 27-oct: solo formulario)', '        <a href="tel:+50767558003" style="text-decoration:none;font-weight:500">+507 6755-8003</a>\n', '', 1),
+        ('sin botón Llamar en la barra del celular (Juan 27-oct: solo formulario)', '  <a class="btn btn-outline btn-sm" href="tel:+50767558003">Llamar</a>\n', '', 1),
     ] + funcionamiento()
 
 

@@ -1,0 +1,152 @@
+{
+ "amenities/golf.jpg": {
+  "antes": 259041,
+  "despues": 165768,
+  "huella": "07044c90c1b823ea43a17056bf3c0076fc0010ba8ceb1b245f70e40bdaa26e24",
+  "webp": 127382
+ },
+ "amenities/kids-club.jpg": {
+  "antes": 230204,
+  "despues": 156253,
+  "huella": "9d108a5388e7eb330572b77d37f9c62f34e9794be6dd6d6f8a07ef468f4d7fd2",
+  "webp": 99318
+ },
+ "amenities/laguna.jpg": {
+  "antes": 220843,
+  "despues": 148382,
+  "huella": "f32b560b3775e22dcccd65fcffb4b95c5eba859f5fd4c5efa19810c9f50b30df",
+  "webp": 104162
+ },
+ "amenities/playa.jpg": {
+  "antes": 346686,
+  "despues": 346686,
+  "huella": "e53cd13edd3ebc5d6a03700bf4d888f6fd3e110aaf4d4a131b62bd599f6edc95",
+  "webp": 258888
+ },
+ "amenities/restaurantes.jpg": {
+  "antes": 269102,
+  "despues": 261339,
+  "huella": "cc2b4a13c5ff39ed182bedeadd7022d1e821bc9d2c6dac1b7cea4712cd8cdd2a",
+  "webp": 196932
+ },
+ "amenities/spa.jpg": {
+  "antes": 238969,
+  "despues": 154388,
+  "huella": "dd7917a7832fd971de51ec81b70ddf27da302e91c2722523e4caf67f44aaafd4",
+  "webp": 107094
+ },
+ "amenities/sports-club.jpg": {
+  "antes": 164485,
+  "despues": 153845,
+  "huella": "22028e078fb1a6f27ad19bfc531de7aa33b8076aa6bfaca95eb86cc49084055a",
+  "webp": 124850
+ },
+ "hero-lagoon.jpg": {
+  "antes": 893203,
+  "despues": 520774,
+  "huella": "cc39cc58c954f728bd49f6fa70c793823d3ab0a1859372d37853b1809730166c",
+  "webp": 423816
+ },
+ "logo.png": {
+  "antes": 21429,
+  "despues": 21429,
+  "huella": "fb18657d462317a3160cf0c5912ed58ee9e28d2c8119dfa43ede4e4cb4a5f34d",
+  "webp": 19266
+ },
+ "palmera.png": {
+  "antes": 62402,
+  "despues": 51210,
+  "huella": "031aa80f38a1215735abc2feff57a775375faf6af32b2a6c0132496d236ef67f",
+  "webp": 19312
+ },
+ "panama/interior-sala.jpg": {
+  "antes": 83409,
+  "despues": 83409,
+  "huella": "90404e54b3d96930bab45e0c194db219913c6c51727d5cbccc0e682b537b9d11",
+  "webp": 50534
+ },
+ "panama/inversion-pareja.jpg": {
+  "antes": 165286,
+  "despues": 165286,
+  "huella": "7c14afe4cbec707c1f11e17ca3bad00bdbf1e40b9ec08fd56ebefab13918b604",
+  "webp": 104876
+ },
+ "panama/laguna-familia.jpg": {
+  "antes": 139411,
+  "despues": 139411,
+  "huella": "ce0d3fd68f53a7cba46f0ac11dfdd45722610dc488c4af64e374336c5a1059ec",
+  "webp": 83328
+ },
+ "panama/laguna.jpg": {
+  "antes": 276355,
+  "despues": 268056,
+  "huella": "8d1553fc31c09c83c217757808cd8f133f442801f020dc75e7d8431876bf3ba0",
+  "webp": 185152
+ },
+ "panama/social.jpg": {
+  "antes": 99226,
+  "despues": 99226,
+  "huella": "2642921e66aaff3fecc803a764d29bd3825b0b9f9b797eb6fc594c13a0338484",
+  "webp": 69438
+ },
+ "panama/testi-carolina.jpg": {
+  "antes": 15025,
+  "despues": 13842,
+  "huella": "5131f9b57c53938b5375fda8fd71c94c9d1b32e0ce0f5edea8b09ca3a14c2ddc",
+  "webp": 9082
+ },
+ "panama/testi-maritza.jpg": {
+  "antes": 13635,
+  "despues": 12625,
+  "huella": "56c1386b0a6f89842b35c5af5ac1fcdf77613353ab6cd9d4a0efa8c5469c459b",
+  "webp": 7402
+ },
+ "panama/testi-roberto.jpg": {
+  "antes": 12545,
+  "despues": 11661,
+  "huella": "862e707d8371897f6de2e53192d67e3ed8c8ff2a7c0499f4c3c41e43ae54c442",
+  "webp": 6862
+ },
+ "panama/vista-aerea.jpg": {
+  "antes": 214247,
+  "despues": 214247,
+  "huella": "3ba7dd408e38f3b64df355a1a9b46b481ba38cca21bfa39ddfd50335294481de",
+  "webp": 170556
+ },
+ "projects/aquavista.jpg": {
+  "antes": 231180,
+  "despues": 151365,
+  "huella": "1a4208db55f35fc29076a6029b6246a0a898b38fd26d1694c9f4ee8e9eaedaee",
+  "webp": 99548
+ },
+ "projects/coral-park.jpg": {
+  "antes": 318365,
+  "despues": 211731,
+  "huella": "dd741b4964f43d72e0b7694739b2383469e9e40c9b047dee407d4d01f32622b8",
+  "webp": 130550
+ },
+ "projects/ocean-3.jpg": {
+  "antes": 367586,
+  "despues": 252806,
+  "huella": "47074d35b3473a094758b7f7f424eebc0a3869b04b5a2420261b0592cda01e62",
+  "webp": 147160
+ },
+ "projects/ocean-two.jpg": {
+  "antes": 269796,
+  "despues": 177495,
+  "huella": "230089721f96ffaa5509a06086ec3c8509f6b4f01ac18ee635c3b672db18d4db",
+  "webp": 116274
+ },
+ "projects/terrazas-villas.jpg": {
+  "antes": 331810,
+  "despues": 218720,
+  "huella": "7e5993c3e06f7c5f4afbc50ad06b6d0d3d874d991eff54343fb869a35f18ee63",
+  "webp": 146990
+ },
+ "projects/waterways.jpg": {
+  "antes": 307516,
+  "despues": 210928,
+  "huella": "103f5f0b5abfbdb7ea91cddfee13efabe942336b2a5cebdaaca1d9151fb541ec",
+  "webp": 124844
+ }
+}

@@ -1,0 +1,7 @@
+# Solo se publica el sitio. Fuente del hijo, scripts y pruebas se quedan locales.
+_fuente-hijo/
+tools/
+README.md
+images/.manifiesto.json
+*.py
+*.sh

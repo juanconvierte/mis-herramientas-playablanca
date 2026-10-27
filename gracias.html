@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gracias — Playa Blanca Beach &amp; Lagoon Residences</title>
+<meta name="description" content="Recibimos su solicitud. Un asesor de Playa Blanca Residences le escribirá en las próximas horas.">
+<!-- Esta página es el final de un embudo de anuncios: no debe aparecer en
+     buscadores ni competir con el landing. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1B3A5C">
+<link rel="icon" href="/images/palmera.png?v=b8a39f3b">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/estilo.css?v=0974ae6c44">
+
+<style>
+  .gracias {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    background: var(--warm);
+  }
+  .gracias-check {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    background: var(--navy);
+    display: grid;
+    place-items: center;
+  }
+  .gracias-check::after {
+    content: "";
+    width: 22px;
+    height: 11px;
+    border-left: 2.5px solid var(--gold);
+    border-bottom: 2.5px solid var(--gold);
+    transform: rotate(-45deg) translate(2px, -2px);
+  }
+  .pasos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    text-align: left;
+  }
+  @media (max-width: 760px) { .pasos { grid-template-columns: 1fr; } }
+  .paso-num {
+    font-family: var(--display);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-deep);
+  }
+  .paso h3 { margin-top: 0.65rem; font-size: 1.1rem; }
+  .paso p { margin: 0.6rem 0 0; font-size: 0.92rem; line-height: 1.7; color: var(--muted); }
+</style>
+<script>
+  window.PB_PRUEBA = /^landing-panama-(nueva|git-|[a-z0-9]{9}-)/.test(location.hostname);
+  if (window.PB_PRUEBA) { window.fbq = function(){}; window.fbq.loaded = true; }
+</script>
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  (function(){ var x = null; try { x = localStorage.getItem('pb_xid'); } catch(e){}
+    fbq('init', '2195180334399669', x ? { external_id: x } : {}); })();
+  fbq('track', 'PageView');
+  /* CompleteRegistration: una sola vez por lead real (candado pb_cr_fired, mismo scope que pb_lead_name). */
+  (function() {
+    try {
+      var hasLead = localStorage.getItem('pb_lead_name');
+      var alreadyFired = localStorage.getItem('pb_cr_fired');
+      if (hasLead && !alreadyFired) {
+        localStorage.setItem('pb_cr_fired', '1');
+        fbq('track', 'CompleteRegistration', {
+          content_name: 'Lead Panama Landing',
+          status: true,
+          content_category: localStorage.getItem('pb_lead_objetivo') || 'Sin especificar'
+        });
+      }
+    } catch(e) {}
+  })();
+</script>
+</head>
+<body>
+
+<section class="gracias">
+  <div class="wrap centrado" style="padding-block:clamp(4rem,10vh,7rem)">
+    <div class="gracias-check" aria-hidden="true"></div>
+
+    <div class="eyebrow centrada"><span>Solicitud recibida</span></div>
+    <h1 class="h2">Gracias. Su asesor ya tiene sus datos.</h1>
+    <p class="lede centrada">
+      Un asesor especializado revisará su solicitud y le contactará por WhatsApp
+      en las próximas horas, con disponibilidad real, precios actualizados y
+      facilidades de pago.
+    </p>
+
+    <div style="margin-top:2.5rem">
+      <a id="waBtn" class="btn btn-gold" href="https://wa.me/50767558003?text=Hola%2C%20acabo%20de%20dejar%20mis%20datos%20en%20la%20p%C3%A1gina%20y%20quiero%20informaci%C3%B3n%20de%20Playa%20Blanca." target="_blank" rel="noopener">
+        Escribir a mi asesor ahora
+      </a>
+      <p class="nota" style="margin-top:1rem">Respuesta inmediata por WhatsApp</p>
+    </div>
+
+    <div class="pasos">
+      <div class="card paso">
+        <span class="paso-num">01</span>
+        <h3>Revisión de su perfil</h3>
+        <p>Su asesor analiza sus preferencias para prepararle una selección personalizada de opciones.</p>
+      </div>
+      <div class="card paso">
+        <span class="paso-num">02</span>
+        <h3>Contacto por WhatsApp</h3>
+        <p>Le escribirá con precios reales, planos disponibles y facilidades de pago.</p>
+      </div>
+      <div class="card paso">
+        <span class="paso-num">03</span>
+        <h3>Su decisión, sin presión</h3>
+        <p>Resolvemos sus dudas y, si lo desea, coordinamos un recorrido virtual o presencial del proyecto.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem">
+      <a class="btn btn-outline btn-sm" href="/">Volver al inicio</a>
+    </div>
+  </div>
+</section>
+
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2195180334399669&ev=PageView&noscript=1"></noscript>
+<script>
+  /* WhatsApp con los datos del lead + limpieza (CR ya disparó arriba). */
+  (function() {
+    function lg(k){ try { return localStorage.getItem(k) || ''; } catch(_) { return ''; } }
+    var leadName = lg('pb_lead_name'), leadObjetivo = lg('pb_lead_objetivo'), leadRango = lg('pb_lead_rango');
+    var waBtn = document.getElementById('waBtn');
+    if (waBtn && (leadName || leadObjetivo)) {
+      var waText = 'Hola, soy ' + (leadName || 'un interesado') + '. Acabo de solicitar información sobre Playa Blanca';
+      if (leadObjetivo) waText += ' para ' + leadObjetivo.toLowerCase();
+      if (leadRango) waText += ' en el rango de ' + leadRango;
+      waText += '. Quedo atento.';
+      waBtn.href = 'https://wa.me/50767558003?text=' + encodeURIComponent(waText);
+    }
+    try {
+      ['pb_lead_name','pb_lead_objetivo','pb_lead_rango','pb_lead_tipo','pb_lead_phone','pb_cr_fired']
+        .forEach(function(k){ localStorage.removeItem(k); });
+    } catch(_) {}
+    if (waBtn) waBtn.addEventListener('click', function() {
+      if (typeof fbq === 'function') fbq('track', 'Contact', { content_name: 'WhatsApp Post-Lead', source: 'thank_you_page' });
+    });
+  })();
+  (function() {
+    var start = Date.now(), f30 = false, f60 = false;
+    setInterval(function() {
+      var s = (Date.now() - start) / 1000;
+      if (s >= 30 && !f30) { f30 = true; if (typeof fbq === 'function') fbq('trackCustom', 'TYPageEngaged30s'); }
+      if (s >= 60 && !f60) { f60 = true; if (typeof fbq === 'function') fbq('trackCustom', 'TYPageEngaged60s'); }
+    }, 5000);
+  })();
+</script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 // Prueba el formulario de punta a punta SIN mandar nada real: HubSpot, Faro, CAPI y Meta quedan
 // interceptados. Compara lo que manda la landing actual (LIVE) contra la copia (NUEVA).
 //   node tools/qa/formulario.js      (con los dos servidores locales: 4173 nueva, 4174 LIVE)
+//   SOLO=prueba PRUEBA=https://landing-panama-nueva.vercel.app/ node tools/qa/formulario.js   (solo el link publicado)
 const { chromium } = require('playwright-core');
 const fs = require('fs');
 const path = require('path');
@@ -102,7 +103,7 @@ async function correr(browser, caso, movil) {
   fs.mkdirSync(OUT, { recursive: true });
   const browser = await chromium.launch({ executablePath: EXE, headless: true });
   const todos = [];
-  for (const caso of CASOS) {
+  for (const caso of CASOS.filter(c => !process.env.SOLO || c.nombre.includes(process.env.SOLO))) {
     for (const movil of [false, true]) {
       const r = await correr(browser, caso, movil);
       todos.push(r);

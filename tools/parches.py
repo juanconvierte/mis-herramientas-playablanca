@@ -24,7 +24,6 @@ def landing(sitio, version_css):
         ('hoja de estilos con versión + modo prueba',
          '<link rel="stylesheet" href="estilo.css">',
          '<link rel="stylesheet" href="/estilo.css?v=%s">\n'
-         '<link rel="preload" as="image" href="/images/hero-lagoon.webp" type="image/webp" fetchpriority="high">\n'
          '<style>picture{display:contents}picture>source{display:none}</style>\n%s' % (version_css, MODO_PRUEBA), 1),
 
         # ---- SEO técnico: la página dice ser ella misma, no la del hijo

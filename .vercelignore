@@ -5,3 +5,6 @@ README.md
 images/.manifiesto.json
 *.py
 *.sh
+.env
+.env.*
+.vercel/

@@ -5,3 +5,4 @@ node_modules/
 tools/qa/salida/
 .DS_Store
 .env*
+fuente-hijo-*/

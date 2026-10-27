@@ -14,7 +14,7 @@ import sys
 
 RAIZ = os.environ.get('RAIZ_SITIO') or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CFG = json.load(open(os.path.join(RAIZ, 'vercel.json'), encoding='utf-8'))
-NO_PUBLICO = re.compile(r'^/(tools|_fuente-hijo|\.git|images/\.manifiesto\.json)(/|$)')
+NO_PUBLICO = re.compile(r'^/(tools|_?fuente-hijo[^/]*|\.git|images/\.manifiesto\.json)(/|$)')
 
 
 def regla(fuente):

@@ -9,8 +9,8 @@ const EXE = process.env.CHROME ||
   '/Users/juanescorcha/Library/Caches/ms-playwright/chromium-1247/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing';
 const OUT = process.env.OUT || path.join(__dirname, 'salida');
 const CASOS = [
-  { nombre: 'LIVE', url: process.env.LIVE || 'http://localhost:4174/' },
-  { nombre: 'NUEVA', url: process.env.NUEVA || 'http://localhost:4173/' },
+  { nombre: 'LIVE', url: process.env.LIVE || 'http://127.0.0.1:4174/' },
+  { nombre: 'NUEVA', url: process.env.NUEVA || 'http://127.0.0.1:4173/' },
   { nombre: 'NUEVA-modo-prueba', url: process.env.PRUEBA || 'http://landing-panama-nueva.localhost:4173/', prueba: true },
 ];
 const SALIDAS = /api\.hsforms\.com|faro-five-chi\.vercel\.app|\/api\/conversion|facebook\.(com|net)|clarity\.ms|hs-scripts\.com|hs-analytics|hs-banner|hscollectedforms|hubspot\.com/;

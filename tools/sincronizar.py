@@ -10,13 +10,15 @@ Uso (desde la carpeta web-panama-NUEVA):
   python3 -E tools/sincronizar.py --offline   # regenera desde la copia guardada en _fuente-hijo/
 
 Cada parche exige encontrar su texto exacto. Si el hijo cambia su página y un parche
-ya no calza, el script se detiene y dice cuál; no publica nada a medias.
+ya no calza, el script se detiene ANTES de escribir nada y dice cuál parche falló.
 """
 import hashlib
 import json
 import os
 import re
+import shutil
 import sys
+import tempfile
 import urllib.request
 
 from PIL import Image, ImageOps
@@ -24,7 +26,6 @@ from PIL import Image, ImageOps
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FUENTE = os.path.join(RAIZ, '_fuente-hijo')
 ORIGEN = 'https://www.playablancaresidences.com'
-SITIO = 'https://panama.playablancaresidences.com'
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import parches  # noqa: E402  (tools/parches.py: todo lo que se cambia, en un solo lugar)
@@ -48,14 +49,17 @@ def imagenes_referidas(texto):
 
 
 def descargar_todo():
+    """Baja a una carpeta temporal; _fuente-hijo solo se reemplaza si el armado sale bien."""
     print('Bajando la versión actual del hijo...')
-    html = bajar('/panama/', os.path.join(FUENTE, 'panama', 'index.html')).decode('utf-8')
-    css = bajar('/panama/estilo.css', os.path.join(FUENTE, 'panama', 'estilo.css')).decode('utf-8')
-    gracias = bajar('/panama/gracias/', os.path.join(FUENTE, 'panama', 'gracias', 'index.html')).decode('utf-8')
+    tmp = tempfile.mkdtemp(prefix='fuente-hijo-', dir=RAIZ)
+    html = bajar('/panama/', os.path.join(tmp, 'panama', 'index.html')).decode('utf-8')
+    css = bajar('/panama/estilo.css', os.path.join(tmp, 'panama', 'estilo.css')).decode('utf-8')
+    gracias = bajar('/panama/gracias/', os.path.join(tmp, 'panama', 'gracias', 'index.html')).decode('utf-8')
     rutas = imagenes_referidas(html + css + gracias)
     for r in rutas:
-        bajar('/' + r, os.path.join(FUENTE, r))
+        bajar('/' + r, os.path.join(tmp, r))
     print('  %d imágenes' % len(rutas))
+    return tmp
 
 
 # ---------------------------------------------------------------- utilidades
@@ -74,7 +78,8 @@ def aplicar(texto, lista, archivo):
     for nombre, viejo, nuevo, veces in lista:
         n = texto.count(viejo)
         if (veces is None and n == 0) or (veces is not None and n != veces):
-            raise SystemExit('PARCHE NO CALZA [%s] "%s": esperaba %s, encontré %d' % (archivo, nombre, veces or '>=1', n))
+            raise SystemExit('PARCHE NO CALZA [%s] "%s": esperaba %s, encontré %d. No se escribió nada.'
+                             % (archivo, nombre, veces or '>=1', n))
         texto = texto.replace(viejo, nuevo)
     return texto
 
@@ -86,6 +91,10 @@ def huella(ruta):
     return h.hexdigest()
 
 
+def movil(rel):
+    return re.sub(r'\.(jpe?g|png)$', '-movil.webp', rel, flags=re.I)
+
+
 # ---------------------------------------------------------------- imágenes
 # Misma foto, mismo tamaño, menos peso: JPG recomprimido (respaldo) + WebP (navegadores actuales).
 CALIDAD_JPG = 85
@@ -93,15 +102,15 @@ CALIDAD_WEBP = 82
 CALIDAD_WEBP_HERO = 86
 
 
-def optimizar_imagenes():
-    origen = os.path.join(FUENTE, 'images')
+def optimizar_imagenes(fuente):
+    origen = os.path.join(fuente, 'images')
     destino = os.path.join(RAIZ, 'images')
     manifiesto_ruta = os.path.join(destino, '.manifiesto.json')
     try:
         manifiesto = json.loads(leer(manifiesto_ruta))
     except (OSError, ValueError):
         manifiesto = {}
-    resumen = []
+    vigentes, resumen = set(), []
     for carpeta, _, archivos in os.walk(origen):
         for nombre in sorted(archivos):
             if not re.search(r'\.(jpe?g|png)$', nombre, re.I):
@@ -110,15 +119,18 @@ def optimizar_imagenes():
             rel = os.path.relpath(src, origen)
             dst = os.path.join(destino, rel)
             webp = re.sub(r'\.(jpe?g|png)$', '.webp', dst, flags=re.I)
+            recorte = parches.RECORTES_MOVIL.get(rel)
+            salidas = [dst, webp] + ([os.path.join(destino, movil(rel))] if recorte else [])
+            vigentes.update(os.path.relpath(s, destino) for s in salidas)
             h = huella(src)
-            if manifiesto.get(rel, {}).get('huella') == h and os.path.exists(dst) and os.path.exists(webp):
-                resumen.append((rel, manifiesto[rel]['antes'], manifiesto[rel]['despues'], manifiesto[rel]['webp']))
+            clave = h + json.dumps(recorte, sort_keys=True)
+            if manifiesto.get(rel, {}).get('huella') == clave and all(os.path.exists(s) for s in salidas):
+                resumen.append(manifiesto[rel])
                 continue
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             im = Image.open(src)
             icc = im.info.get('icc_profile')
             im = ImageOps.exif_transpose(im)  # la orientación queda en los píxeles, no en metadatos
-            antes = os.path.getsize(src)
             extra = {'icc_profile': icc} if icc else {}
             if nombre.lower().endswith('.png'):
                 im.save(dst, 'PNG', optimize=True, **extra)
@@ -128,22 +140,35 @@ def optimizar_imagenes():
                 rgb.save(dst, 'JPEG', quality=CALIDAD_JPG, optimize=True, progressive=True, **extra)
                 q = CALIDAD_WEBP_HERO if 'hero' in nombre else CALIDAD_WEBP
                 rgb.save(webp, 'WEBP', quality=q, method=6, **extra)
-            if os.path.getsize(dst) >= antes:  # si no gana, queda el original tal cual
-                with open(src, 'rb') as a, open(dst, 'wb') as b:
-                    b.write(a.read())
-            manifiesto[rel] = {'huella': h, 'antes': antes, 'despues': os.path.getsize(dst), 'webp': os.path.getsize(webp)}
-            resumen.append((rel, antes, manifiesto[rel]['despues'], manifiesto[rel]['webp']))
+                if recorte:
+                    w, alto = rgb.size
+                    x = (w - recorte['ancho']) // 2
+                    rgb.crop((x, 0, x + recorte['ancho'], alto)).save(salidas[2], 'WEBP', quality=q, method=6, **extra)
+            if os.path.getsize(dst) >= os.path.getsize(src):  # si no gana, queda el original tal cual
+                shutil.copyfile(src, dst)
+            manifiesto[rel] = {'huella': clave, 'antes': os.path.getsize(src), 'jpg': os.path.getsize(dst),
+                               'webp': os.path.getsize(webp)}
+            if recorte:
+                manifiesto[rel]['movil'] = os.path.getsize(salidas[2])
+            resumen.append(manifiesto[rel])
+    # fotos que el hijo ya no usa
+    for carpeta, _, archivos in os.walk(destino):
+        for nombre in archivos:
+            rel = os.path.relpath(os.path.join(carpeta, nombre), destino)
+            if nombre != '.manifiesto.json' and rel not in vigentes:
+                os.remove(os.path.join(carpeta, nombre))
+    manifiesto = {k: v for k, v in manifiesto.items() if k in vigentes}
     escribir(manifiesto_ruta, json.dumps(manifiesto, indent=1, sort_keys=True))
-    a = sum(r[1] for r in resumen)
-    w = sum(min(r[2], r[3]) for r in resumen)
+    a = sum(r['antes'] for r in resumen)
+    w = sum(min(r['jpg'], r['webp']) for r in resumen)
     print('  imágenes: %d · %.1f MB -> %.1f MB' % (len(resumen), a / 1e6, w / 1e6))
 
 
 def envolver_en_picture(html):
-    """<img src="/images/x.jpg"> -> <picture><source webp><img ...></picture>. CSS: picture{display:contents}."""
+    """<img src="/images/x.jpg"> -> <picture>[recorte celular]<source webp><img ...></picture>."""
     def cambio(m):
         tag = m.group(0)
-        src = re.search(r'src="(/images/[^"]+\.(?:jpe?g|png))"', tag)
+        src = re.search(r'src="(/images/([^"]+\.(?:jpe?g|png)))"', tag)
         if not src:
             return tag
         webp = re.sub(r'\.(jpe?g|png)$', '.webp', src.group(1), flags=re.I)
@@ -151,7 +176,12 @@ def envolver_en_picture(html):
             return tag
         if 'loading="lazy"' in tag and 'decoding=' not in tag:
             tag = tag[:-1].rstrip() + ' decoding="async">'
-        return '<picture><source srcset="%s" type="image/webp">%s</picture>' % (webp, tag)
+        fuentes = ''
+        recorte = parches.RECORTES_MOVIL.get(src.group(2))
+        if recorte:
+            fuentes += '<source media="%s" srcset="/images/%s" type="image/webp">' % (recorte['media'], movil(src.group(2)))
+        fuentes += '<source srcset="%s" type="image/webp">' % webp
+        return '<picture>%s%s</picture>' % (fuentes, tag)
     return re.sub(r'<img\b[^>]*>', cambio, html)
 
 
@@ -166,29 +196,33 @@ def versionar_imagenes(html):
 
 
 # ---------------------------------------------------------------- armado
-def armar():
-    css_src = os.path.join(FUENTE, 'panama', 'estilo.css')
+def armar(fuente):
+    # 1) parches en memoria: si alguno no calza, se para aquí sin tocar nada
+    css_src = os.path.join(fuente, 'panama', 'estilo.css')
     css = leer(css_src)
-    escribir(os.path.join(RAIZ, 'estilo.css'), css)
     version_css = huella(css_src)[:10]
+    html = aplicar(leer(os.path.join(fuente, 'panama', 'index.html')), parches.landing(version_css), 'index.html')
+    g = aplicar(leer(os.path.join(fuente, 'panama', 'gracias', 'index.html')), parches.gracias(version_css), 'gracias.html')
 
-    optimizar_imagenes()
-
-    # --- landing
-    html = leer(os.path.join(FUENTE, 'panama', 'index.html'))
-    html = aplicar(html, parches.landing(SITIO, version_css), 'index.html')
+    # 2) fotos, 3) armado final
+    optimizar_imagenes(fuente)
     html = versionar_imagenes(envolver_en_picture(html))
+    g = versionar_imagenes(g)
+    escribir(os.path.join(RAIZ, 'estilo.css'), css)
     escribir(os.path.join(RAIZ, 'index.html'), html)
-
-    # --- gracias
-    g = leer(os.path.join(FUENTE, 'panama', 'gracias', 'index.html'))
-    g = aplicar(g, parches.gracias(SITIO, version_css), 'gracias.html')
-    escribir(os.path.join(RAIZ, 'gracias.html'), versionar_imagenes(g))
-
+    escribir(os.path.join(RAIZ, 'gracias.html'), g)
     print('Listo: index.html, gracias.html, estilo.css, images/')
 
 
 if __name__ == '__main__':
-    if '--offline' not in sys.argv:
-        descargar_todo()
-    armar()
+    if '--offline' in sys.argv:
+        armar(FUENTE)
+    else:
+        tmp = descargar_todo()
+        try:
+            armar(tmp)
+        except BaseException:
+            shutil.rmtree(tmp, ignore_errors=True)
+            raise
+        shutil.rmtree(FUENTE, ignore_errors=True)
+        os.rename(tmp, FUENTE)

@@ -5,7 +5,7 @@ const { chromium } = require('playwright-core');
 
 const EXE = process.env.CHROME ||
   '/Users/juanescorcha/Library/Caches/ms-playwright/chromium-1247/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing';
-const URL = process.env.NUEVA || 'http://localhost:4173/';
+const URL = process.env.NUEVA || 'http://127.0.0.1:4173/';
 const SALIDAS = /api\.hsforms\.com|faro-five-chi\.vercel\.app|\/api\/conversion|facebook\.(com|net)|clarity\.ms|hs-scripts\.com|hubspot/;
 const ESPIA = `(() => { let real; Object.defineProperty(window, 'fbq', { configurable: true, get() { return real; },
   set(v) { const o = v; real = function () { (window.__fb = window.__fb || []).push([].slice.call(arguments)); return o.apply(this, arguments); }; Object.assign(real, o); real.queue = o.queue; } }); })();`;
@@ -43,7 +43,7 @@ const eventos = page => page.evaluate(() => (window.__fb || []).map(a => a[0] + 
   await page.locator('.faq-item summary').first().click();
   await page.waitForTimeout(300);
   await page.locator('#nav a[aria-label]').click();
-  await page.waitForTimeout(1200);
+  await page.waitForTimeout(3000);  // el scroll suave desde abajo tarda ~2.5 s
   res.logo_se_queda = page.url().startsWith(URL) && await page.evaluate(() => window.scrollY < 50);
   res.eventos_escritorio = await eventos(page);
   res.errores_escritorio = errores;

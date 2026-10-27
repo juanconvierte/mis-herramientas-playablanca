@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Playa Blanca Beach &amp; Lagoon Residences — Su casa frente al mar, en la Riviera Pacífica de Panamá</title>
 <meta name="description" content="Comunidad consolidada frente al Pacífico de Panamá, con 23 años de vida y todo funcionando. Apartamentos y casas desde $193,912 USD, en Río Hato, a una hora de Ciudad de Panamá.">
-<link rel="canonical" href="https://panama.playablancaresidences.com/">
+<link rel="canonical" href="https://playablancaresidences.com/panama/">
 <meta name="theme-color" content="#1B3A5C">
 
 <meta property="og:type" content="website">
@@ -13,8 +13,8 @@
 <meta property="og:site_name" content="Playa Blanca Beach &amp; Lagoon Residences">
 <meta property="og:title" content="Su casa frente al mar, en la Riviera Pacífica de Panamá">
 <meta property="og:description" content="Una comunidad consolidada frente al Pacífico, con 23 años de vida y todo funcionando. Desde $193,912 USD.">
-<meta property="og:url" content="https://panama.playablancaresidences.com/">
-<meta property="og:image" content="https://panama.playablancaresidences.com/images/hero-lagoon.jpg">
+<meta property="og:url" content="https://playablancaresidences.com/panama/">
+<meta property="og:image" content="https://playablancaresidences.com/images/hero-lagoon.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="/images/palmera.png?v=b8a39f3b">
@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="/estilo.css?v=0974ae6c44">
 <style>picture{display:contents}picture>source{display:none}</style>
 <script>
-  window.PB_PRUEBA = /^landing-panama-(nueva|git-|[a-z0-9]{9}-)/.test(location.hostname);
+  window.PB_PRUEBA = /^landing-panama-(nueva|git-(?!main-)|[a-z0-9]{9}-)/.test(location.hostname) || location.hostname === 'localhost';
   if (window.PB_PRUEBA) { window.fbq = function(){}; window.fbq.loaded = true; }
 </script>
 
@@ -77,8 +77,8 @@
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "name": "Playa Blanca Beach & Lagoon Residences",
-    "url": "https://panama.playablancaresidences.com/",
-    "logo": "https://panama.playablancaresidences.com/images/logo.png",
+    "url": "https://playablancaresidences.com/panama/",
+    "logo": "https://playablancaresidences.com/images/logo.png",
     "description": "Residencias premium frente al Pacífico en la Riviera Pacífica de Panamá. Desde $193,912 USD.",
     "telephone": "+50767558003",
     "address": {
@@ -118,7 +118,7 @@
      Hero
      ====================================================================== -->
 <section class="hero" id="top">
-  <picture><source srcset="/images/hero-lagoon.webp?v=cc66e894" type="image/webp"><img class="hero-img" src="/images/hero-lagoon.jpg?v=4327f1b0" alt="La laguna de agua salada de Playa Blanca, frente al Pacífico panameño" fetchpriority="high"></picture>
+  <picture><source media="(max-aspect-ratio: 9/16)" srcset="/images/hero-lagoon-movil.webp?v=97fafa60" type="image/webp"><source srcset="/images/hero-lagoon.webp?v=cc66e894" type="image/webp"><img class="hero-img" src="/images/hero-lagoon.jpg?v=4327f1b0" alt="La laguna de agua salada de Playa Blanca, frente al Pacífico panameño" fetchpriority="high"></picture>
   <div class="hero-velo"></div>
 
   <div class="wrap hero-contenido">
@@ -968,6 +968,7 @@
       ilustrativas y pueden no representar el producto final. Los precios están
       sujetos a cambios sin previo aviso. Consulte condiciones con un asesor. No
       se garantizan rendimientos ni retornos de inversión.
+      <a href="/privacidad" style="white-space:nowrap">Política de privacidad</a>.
     </p>
   </div>
 </footer>
@@ -1753,20 +1754,27 @@
         .observe(campo, { attributes: true, attributeFilter: ['class'] });
     });
 
-    // Tarjetas de proyectos: en la landing original llevan al formulario.
+    // Tarjetas de proyectos: en la landing original llevan al formulario (también con teclado).
     var contacto = document.getElementById('contacto');
+    function irAlForm(){
+      if (!contacto) return;
+      try { contacto.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch(_) { location.hash = '#contacto'; }
+    }
     document.querySelectorAll('.proy').forEach(function(card){
       card.style.cursor = 'pointer';
-      card.addEventListener('click', function(){
-        if (!contacto) return;
-        try { contacto.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch(_) { location.hash = '#contacto'; }
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'link');
+      card.addEventListener('click', irAlForm);
+      card.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
       });
     });
 
-    // Llamadas: quien toca "Llamar" sale del formulario; al menos queda medido.
+    // Llamadas: quien toca "Llamar" sale del formulario; queda medido como evento propio
+    // (no "Contact": ese nombre ya significa "el asesor contactó al lead" en la escalera de Meta).
     document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
       a.addEventListener('click', function(){
-        try { if (typeof fbq === 'function') fbq('track', 'Contact', { content_name: 'Llamada', source: 'landing_panama' }); } catch(_) {}
+        try { if (typeof fbq === 'function') fbq('trackCustom', 'ClickToCall', { source: 'landing_panama' }); } catch(_) {}
       });
     });
   })();

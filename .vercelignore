@@ -8,3 +8,4 @@ images/.manifiesto.json
 .env
 .env.*
 .vercel/
+fuente-hijo-*/

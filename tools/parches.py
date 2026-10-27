@@ -1,7 +1,11 @@
 """
 Todo lo que se le cambia a la página del hijo, en un solo lugar.
-Regla: el DISEÑO no se toca. Solo rutas, SEO técnico, velocidad y el funcionamiento
-probado de web-panama-LIVE (medición, formulario, CAPI).
+Regla: el DISEÑO no se toca. Solo rutas, velocidad y el funcionamiento probado de
+web-panama-LIVE (medición, formulario, CAPI). Única excepción visible: el enlace
+"Política de privacidad" en la letra pequeña del pie (la landing actual lo tiene; ley 81 / Meta / Clarity).
+
+SEO: el canonical, og:url y JSON-LD se dejan como los puso el hijo (apuntan a su página),
+para no competir en Google con la web del cliente. Esta es una página de anuncios.
 
 Formato de cada parche: (nombre, texto_exacto_del_hijo, reemplazo, veces)
   veces = número exacto de apariciones esperadas, o None = al menos una.
@@ -9,15 +13,16 @@ Formato de cada parche: (nombre, texto_exacto_del_hijo, reemplazo, veces)
 
 PIXEL = '2195180334399669'
 
-# Copias de prueba (este proyecto en Vercel y las vistas previas de landing-panama): se ven igual,
+# Copias de prueba (este proyecto en Vercel, vistas previas de landing-panama y localhost): se ven igual,
 # pero NO mandan datos ni miden nada. En panama.playablancaresidences.com todo funciona normal.
+# landing-panama-git-main-… sirve producción: queda fuera a propósito.
 MODO_PRUEBA = """<script>
-  window.PB_PRUEBA = /^landing-panama-(nueva|git-|[a-z0-9]{9}-)/.test(location.hostname);
+  window.PB_PRUEBA = /^landing-panama-(nueva|git-(?!main-)|[a-z0-9]{9}-)/.test(location.hostname) || location.hostname === 'localhost';
   if (window.PB_PRUEBA) { window.fbq = function(){}; window.fbq.loaded = true; }
 </script>"""
 
 
-def landing(sitio, version_css):
+def landing(version_css):
     return [
         # ---- rutas: el hijo vive en /panama/ y saca las fotos de ../images/; aquí todo vive en la raíz
         ('fotos a la raíz', '../images/', '/images/', None),
@@ -26,20 +31,14 @@ def landing(sitio, version_css):
          '<link rel="stylesheet" href="/estilo.css?v=%s">\n'
          '<style>picture{display:contents}picture>source{display:none}</style>\n%s' % (version_css, MODO_PRUEBA), 1),
 
-        # ---- SEO técnico: la página dice ser ella misma, no la del hijo
-        ('canonical', '<link rel="canonical" href="https://playablancaresidences.com/panama/">',
-         '<link rel="canonical" href="%s/">' % sitio, 1),
-        ('og:url', '<meta property="og:url" content="https://playablancaresidences.com/panama/">',
-         '<meta property="og:url" content="%s/">' % sitio, 1),
-        ('og:image', 'content="https://playablancaresidences.com/images/hero-lagoon.jpg"',
-         'content="%s/images/hero-lagoon.jpg"' % sitio, 1),
-        ('json-ld url', '"url": "https://playablancaresidences.com/panama/"', '"url": "%s/"' % sitio, 1),
-        ('json-ld logo', '"logo": "https://playablancaresidences.com/images/logo.png"',
-         '"logo": "%s/images/logo.png"' % sitio, 1),
-
         # ---- formulario: al enviar va a la página de gracias de este sitio
         ('redirect a gracias', "window.location.href = 'gracias/';", "window.location.href = '/gracias';", 1),
-    ] + medicion_landing()
+
+        # ---- única diferencia visible: privacidad en la letra pequeña del pie (estilo .pie-legal a del propio hijo)
+        ('política de privacidad en el pie',
+         'se garantizan rendimientos ni retornos de inversión.\n    </p>',
+         'se garantizan rendimientos ni retornos de inversión.\n      <a href="/privacidad" style="white-space:nowrap">Política de privacidad</a>.\n    </p>', 1),
+    ] + funcionamiento()
 
 
 AJUSTES_FIN = """<script>
@@ -55,20 +54,27 @@ AJUSTES_FIN = """<script>
         .observe(campo, { attributes: true, attributeFilter: ['class'] });
     });
 
-    // Tarjetas de proyectos: en la landing original llevan al formulario.
+    // Tarjetas de proyectos: en la landing original llevan al formulario (también con teclado).
     var contacto = document.getElementById('contacto');
+    function irAlForm(){
+      if (!contacto) return;
+      try { contacto.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch(_) { location.hash = '#contacto'; }
+    }
     document.querySelectorAll('.proy').forEach(function(card){
       card.style.cursor = 'pointer';
-      card.addEventListener('click', function(){
-        if (!contacto) return;
-        try { contacto.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch(_) { location.hash = '#contacto'; }
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'link');
+      card.addEventListener('click', irAlForm);
+      card.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
       });
     });
 
-    // Llamadas: quien toca "Llamar" sale del formulario; al menos queda medido.
+    // Llamadas: quien toca "Llamar" sale del formulario; queda medido como evento propio
+    // (no "Contact": ese nombre ya significa "el asesor contactó al lead" en la escalera de Meta).
     document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
       a.addEventListener('click', function(){
-        try { if (typeof fbq === 'function') fbq('track', 'Contact', { content_name: 'Llamada', source: 'landing_panama' }); } catch(_) {}
+        try { if (typeof fbq === 'function') fbq('trackCustom', 'ClickToCall', { source: 'landing_panama' }); } catch(_) {}
       });
     });
   })();
@@ -76,7 +82,7 @@ AJUSTES_FIN = """<script>
 </body>"""
 
 
-def medicion_landing():
+def funcionamiento():
     """Piezas de web-panama-LIVE que la página del hijo no trae o trae rotas. Ninguna cambia el diseño."""
     return [
         # el logo lleva arriba de la misma página (en el hijo saca al visitante a otra web)
@@ -87,7 +93,7 @@ def medicion_landing():
         ('pixel noscript', '<body>',
          '<body>\n<noscript><img height="1" width="1" style="display:none" alt="" '
          'src="https://www.facebook.com/tr?id=%s&ev=PageView&noscript=1"></noscript>' % PIXEL, 1),
-        # Clarity y HubSpot no corren en las copias de prueba
+        # Clarity y HubSpot no corren en las copias de prueba (HubSpot captura formularios por su cuenta)
         ('Clarity fuera de las copias de prueba', '(function(c,l,a,r,i,t,y){',
          'if (!window.PB_PRUEBA) (function(c,l,a,r,i,t,y){', 1),
         ('HubSpot fuera de las copias de prueba',
@@ -145,7 +151,7 @@ GRACIAS_HEAD = """<script>
 
 GRACIAS_BODY_FIN = """<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=%(pixel)s&ev=PageView&noscript=1"></noscript>
 <script>
-  /* WhatsApp con los datos del lead + limpieza (CR ya disparó arriba). */
+  /* WhatsApp con los datos del lead + limpieza (CR ya disparó arriba). Igual que gracias.html de web-panama-LIVE. */
   (function() {
     function lg(k){ try { return localStorage.getItem(k) || ''; } catch(_) { return ''; } }
     var leadName = lg('pb_lead_name'), leadObjetivo = lg('pb_lead_objetivo'), leadRango = lg('pb_lead_rango');
@@ -177,7 +183,7 @@ GRACIAS_BODY_FIN = """<noscript><img height="1" width="1" style="display:none" a
 </body>""" % {'pixel': PIXEL}
 
 
-def gracias(sitio, version_css):
+def gracias(version_css):
     return [
         ('icono', '<link rel="icon" href="../../images/palmera.png">', '<link rel="icon" href="/images/palmera.png">', 1),
         ('hoja de estilos', '<link rel="stylesheet" href="../estilo.css">',
@@ -188,3 +194,13 @@ def gracias(sitio, version_css):
         ('modo prueba + pixel + CompleteRegistration', '</head>', MODO_PRUEBA + '\n' + GRACIAS_HEAD, 1),
         ('WhatsApp personalizado + Contact + tiempo en página', '</body>', GRACIAS_BODY_FIN, 1),
     ]
+
+
+# ------------------------------------------------------------------ fotos
+# Recortes para celular: misma foto, mismos píxeles visibles, la mitad de peso.
+# El hero cubre la pantalla (object-fit: cover, centrado); en un celular vertical
+# (proporción <= 9:16) solo se ve el centro. Un recorte centrado de 1000 px de ancho
+# a la misma altura se escala igual (manda la altura) -> se ve idéntico.
+RECORTES_MOVIL = {
+    'hero-lagoon.jpg': {'ancho': 1000, 'media': '(max-aspect-ratio: 9/16)'},
+}
